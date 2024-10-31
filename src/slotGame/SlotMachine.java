@@ -46,7 +46,7 @@ public class SlotMachine extends JFrame {
     private double totalPayouts = 0;
 
     public SlotMachine() {
-        setTitle("Xperiment");
+        setTitle("Slot Machine");
         setSize(1400, 900);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
