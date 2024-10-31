@@ -188,7 +188,7 @@ public class SlotMachine extends JFrame {
                     String symbol = reels[row][col].getText();
                     Color color = reels[row][col].getForeground();
                     String symbolKey = symbol + "_" + getColorName(color);
-                    double pricePerSymbol = symbolValues.getOrDefault(symbolKey, 0.0); // Получаване на цена за символа
+                    double pricePerSymbol = symbolValues.getOrDefault(symbolKey, 0.0);
                     winAmount += pricePerSymbol * bet;
                 }
             }
@@ -196,14 +196,14 @@ public class SlotMachine extends JFrame {
 
         currentMoney += winAmount;
         sessionWin += winAmount;
-        totalPayouts += winAmount; // Добавяне на печалбата към общите печалби
+        totalPayouts += winAmount;
         if (winAmount > sessionHigh) {
             sessionHigh = winAmount;
         }
         updateInfoPanel();
         updatePositionLabels(winningPositions);
         startGoldBlinking(winningPositions);
-        updateRTPInfo(); // Актуализиране на RTP информацията
+        updateRTPInfo();
     }
 
     private String getColorName(Color color) {
@@ -254,7 +254,7 @@ public class SlotMachine extends JFrame {
             autoButton.setBackground(new Color(144, 238, 144));
             autoButton.setText("Start");
         } else {
-            makeBetAndSpin(false); // Стартиране на играта в ръчен режим
+            makeBetAndSpin(false);
         }
 
         stopBlinking();
