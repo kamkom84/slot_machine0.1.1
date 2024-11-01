@@ -70,7 +70,7 @@ public class SlotMachine extends JFrame {
     private boolean autoRunning = false;
     private int selectedBetIndex = -1;
     private int logCounter = 1;
-    private double initialMoney = 1000;
+    private double initialMoney = 100;
     private double currentMoney = initialMoney;
     private double sessionHigh = 0;
     private double sessionWin = 0;
