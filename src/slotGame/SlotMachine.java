@@ -70,7 +70,7 @@ public class SlotMachine extends JFrame {
     private boolean autoRunning = false;
     private int selectedBetIndex = -1;
     private int logCounter = 1;
-    private double initialMoney = 100;
+    private double initialMoney = 50;
     private double currentMoney = initialMoney;
     private double sessionHigh = 0;
     private double sessionWin = 0;
@@ -111,7 +111,7 @@ public class SlotMachine extends JFrame {
 
         JPanel titlePanel = new JPanel();
         titlePanel.setBackground(Color.BLACK);
-        JLabel titleLabel = new JLabel("x_periment", SwingConstants.CENTER);
+        JLabel titleLabel = new JLabel("slot_game_simulation", SwingConstants.CENTER);
         titleLabel.setFont(new Font("OCR A Extended", Font.BOLD, 28));
         titleLabel.setForeground(Color.WHITE);
         titlePanel.add(titleLabel);
