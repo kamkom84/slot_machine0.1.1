@@ -55,12 +55,10 @@ public class SlotMachine extends JFrame {
     private JLabel[][] reels;
     private JDialog winDialog;
     private JTable winTable;
-    private List<Object[]> winData = new ArrayList<>();
     private String[] tableHeaders = {"N", "Session win logs"};
     private JLabel[] positionLabels;
     private Timer spinTimer;
     private Timer blinkTimer;
-    //private Timer[] grayTimers = new Timer[240];
     private Random random = new Random();
     private String[] symbols = {"🍒", "🍋", "🍊", "🍇", "⭐", "🔔", "💎", "🍉", "7", "Z"};
     private Color[] colors = {Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.CYAN, Color.MAGENTA};
@@ -69,7 +67,6 @@ public class SlotMachine extends JFrame {
     private boolean betSelected = false;
     private boolean autoRunning = false;
     private int selectedBetIndex = -1;
-    private int logCounter = 1;
     private double initialMoney = 500;
     private double currentMoney = initialMoney;
     private double sessionHigh = 0;
@@ -239,7 +236,6 @@ public class SlotMachine extends JFrame {
             sessionHigh = winAmount;
         }
 
-        // Използваме Math.abs(winAmount) при показване на печалбата
         lblLastWin.setText(String.format(Locale.US, "%.2f", Math.abs(winAmount)));
 
         updateInfoPanel();
@@ -409,7 +405,6 @@ public class SlotMachine extends JFrame {
         if (hasWin) {
             processWin(bet, winningPositions);
         } else {
-            // Не нулираме lblLastWin при липса на печалба
             updateInfoPanel();
         }
 
@@ -423,7 +418,6 @@ public class SlotMachine extends JFrame {
     private boolean performWinCheck(double bet, boolean[][] winningPositions) {
         boolean hasWin = false;
 
-        // Проверка за хоризонтални печалби
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col <= 5 - 3; col++) {
                 String symbol = reels[row][col].getText();
@@ -436,7 +430,6 @@ public class SlotMachine extends JFrame {
             }
         }
 
-        // Проверка за вертикални печалби
         for (int col = 0; col < 5; col++) {
             for (int row = 0; row <= 3 - 3; row++) {
                 String symbol = reels[row][col].getText();
@@ -449,7 +442,6 @@ public class SlotMachine extends JFrame {
             }
         }
 
-        // Проверка за диагонални печалби (ляв диагонал '\')
         for (int row = 0; row <= 3 - 3; row++) {
             for (int col = 0; col <= 5 - 3; col++) {
                 String symbol = reels[row][col].getText();
@@ -462,7 +454,6 @@ public class SlotMachine extends JFrame {
             }
         }
 
-        // Проверка за диагонални печалби (десен диагонал '/')
         for (int row = 0; row <= 3 - 3; row++) {
             for (int col = 2; col < 5; col++) {
                 String symbol = reels[row][col].getText();
@@ -537,17 +528,15 @@ public class SlotMachine extends JFrame {
         lblSessionWin.setText(String.format(Locale.US, "%.2f", sessionWin));
         lblGames.setText(String.valueOf(gamesPlayed));
 
-        // Изчисляваме sessionLost като разликата между initialMoney и currentMoney
         double sessionLost = initialMoney - currentMoney;
         lblSessionLost.setText(String.format(Locale.US, "%.2f", Math.abs(sessionLost))); // Използваме Math.abs()
 
-        // Актуализираме цвета на lblSessionLost
         if (sessionLost > 0) {
             lblSessionLost.setForeground(new Color(255, 99, 71)); // Червен цвят за загуба
         } else if (sessionLost < 0) {
-            lblSessionLost.setForeground(Color.GREEN); // Зелен цвят за печалба
+            lblSessionLost.setForeground(Color.GREEN);
         } else {
-            lblSessionLost.setForeground(Color.WHITE); // Бял цвят за нулев баланс
+            lblSessionLost.setForeground(Color.WHITE);
         }
 
         if (currentMoney > initialMoney) {
