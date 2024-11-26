@@ -520,33 +520,33 @@ public class SlotMachine extends JFrame {
 
     private void initializeSymbolValues() {
 
-        symbolValues.put("🍒_RED", 0.11);
-        symbolValues.put("🍒_GREEN", 0.17);
-        symbolValues.put("🍒_BLUE", 0.24);
-        symbolValues.put("🍒_YELLOW", 0.36);
-        symbolValues.put("🍒_CYAN", 0.98);
-        symbolValues.put("🍒_MAGENTA", 1.55);
+        symbolValues.put("🍒_RED", 0.08);
+        symbolValues.put("🍒_GREEN", 0.09);
+        symbolValues.put("🍒_BLUE", 0.14);
+        symbolValues.put("🍒_YELLOW", 0.19);
+        symbolValues.put("🍒_CYAN", 0.21);
+        symbolValues.put("🍒_MAGENTA", 0.24);
 
         symbolValues.put("🍋_RED", 0.07);
-        symbolValues.put("🍋_GREEN", 0.18);
-        symbolValues.put("🍋_BLUE", 0.41);
-        symbolValues.put("🍋_YELLOW", 0.89);
-        symbolValues.put("🍋_CYAN", 1.45);
-        symbolValues.put("🍋_MAGENTA", 2.51);
+        symbolValues.put("🍋_GREEN", 0.9);
+        symbolValues.put("🍋_BLUE", 0.15);
+        symbolValues.put("🍋_YELLOW", 0.24);
+        symbolValues.put("🍋_CYAN", 0.45);
+        symbolValues.put("🍋_MAGENTA", 1.01);
 
-        symbolValues.put("🍊_RED", 0.59);
-        symbolValues.put("🍊_GREEN", 0.94);
-        symbolValues.put("🍊_BLUE", 1.71);
-        symbolValues.put("🍊_YELLOW", 2.14);
-        symbolValues.put("🍊_CYAN", 2.29);
-        symbolValues.put("🍊_MAGENTA", 4.20);
+        symbolValues.put("🍊_RED", 0.05);
+        symbolValues.put("🍊_GREEN", 0.14);
+        symbolValues.put("🍊_BLUE", 0.25);
+        symbolValues.put("🍊_YELLOW", 0.41);
+        symbolValues.put("🍊_CYAN", 0.59);
+        symbolValues.put("🍊_MAGENTA", 0.98);
 
         symbolValues.put("🍇_RED", 0.22);
         symbolValues.put("🍇_GREEN", 0.33);
         symbolValues.put("🍇_BLUE", 0.44);
         symbolValues.put("🍇_YELLOW", 0.66);
-        symbolValues.put("🍇_CYAN", 0.88);
-        symbolValues.put("🍇_MAGENTA", 1.99);
+        symbolValues.put("🍇_CYAN", 0.69);
+        symbolValues.put("🍇_MAGENTA", 0.99);
 
         symbolValues.put("⭐_RED", 0.51);
         symbolValues.put("⭐_GREEN", 0.79);
@@ -558,9 +558,9 @@ public class SlotMachine extends JFrame {
         symbolValues.put("🔔_RED", 0.56);
         symbolValues.put("🔔_GREEN", 0.98);
         symbolValues.put("🔔_BLUE", 1.01);
-        symbolValues.put("🔔_YELLOW", 1.31);
-        symbolValues.put("🔔_CYAN", 1.67);
-        symbolValues.put("🔔_MAGENTA", 1.96);
+        symbolValues.put("🔔_YELLOW", 1.11);
+        symbolValues.put("🔔_CYAN", 1.14);
+        symbolValues.put("🔔_MAGENTA", 1.29);
 
         symbolValues.put("💎_RED", 0.80);
         symbolValues.put("💎_GREEN", 0.90);
@@ -569,26 +569,26 @@ public class SlotMachine extends JFrame {
         symbolValues.put("💎_CYAN", 1.99);
         symbolValues.put("💎_MAGENTA", 2.58);
 
-        symbolValues.put("🍉_RED", 0.91);
+        symbolValues.put("🍉_RED", 0.11);
         symbolValues.put("🍉_GREEN", 1.53);
         symbolValues.put("🍉_BLUE", 2.09);
         symbolValues.put("🍉_YELLOW", 2.59);
-        symbolValues.put("🍉_CYAN", 2.90);
-        symbolValues.put("🍉_MAGENTA", 3.05);
+        symbolValues.put("🍉_CYAN", 2.61);
+        symbolValues.put("🍉_MAGENTA", 2.69);
 
-        symbolValues.put("7_RED", 1.01);
-        symbolValues.put("7_GREEN", 2.02);
-        symbolValues.put("7_BLUE", 3.03);
-        symbolValues.put("7_YELLOW", 4.04);
-        symbolValues.put("7_CYAN", 4.44);
-        symbolValues.put("7_MAGENTA", 5.15);
+        symbolValues.put("7_RED", 0.02);
+        symbolValues.put("7_GREEN", 0.28);
+        symbolValues.put("7_BLUE", 1.03);
+        symbolValues.put("7_YELLOW", 1.49);
+        symbolValues.put("7_CYAN", 2.00);
+        symbolValues.put("7_MAGENTA", 2.15);
 
-        symbolValues.put("Z_RED", 5.01);
-        symbolValues.put("Z_GREEN", 5.11);
-        symbolValues.put("Z_BLUE", 5.21);
-        symbolValues.put("Z_YELLOW", 5.31);
-        symbolValues.put("Z_CYAN", 6.41);
-        symbolValues.put("Z_MAGENTA", 6.51);
+        symbolValues.put("Z_RED", 3.44);
+        symbolValues.put("Z_GREEN", 3.59);
+        symbolValues.put("Z_BLUE", 4.09);
+        symbolValues.put("Z_YELLOW", 4.34);
+        symbolValues.put("Z_CYAN", 5.01);
+        symbolValues.put("Z_MAGENTA", 5.22);
     }
 
     private String getRandomSymbol() {
