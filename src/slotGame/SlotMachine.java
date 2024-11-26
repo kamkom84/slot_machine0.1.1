@@ -27,7 +27,7 @@ public class SlotMachine extends JFrame {
     private boolean betSelected = false;
     private boolean autoRunning = false;
     private int selectedBetIndex = -1;
-    private double initialMoney = 500;
+    private double initialMoney = 500;//////////////////////////////////////////////////////////////////////////////////
     private double currentMoney = initialMoney;
     private double sessionHigh = 0;
     private double sessionWin = 0;
@@ -35,7 +35,7 @@ public class SlotMachine extends JFrame {
     private JPanel infoPanel;
     private JLabel lblInitialMoney, lblCurrentMoney, lblLastWin, lblSessionHigh, lblSessionWin, lblSessionLost, lblGames;
     private Map<String, Double> symbolValues = new HashMap<>();
-    private static final int SPIN_DURATION = 2000;
+    private static final int SPIN_DURATION = 3000;
     private JLabel lblRTP;
     private double totalBets = 0;
     private double totalPayouts = 0;
@@ -525,28 +525,28 @@ public class SlotMachine extends JFrame {
         symbolValues.put("🍒_BLUE", 0.14);
         symbolValues.put("🍒_YELLOW", 0.19);
         symbolValues.put("🍒_CYAN", 0.21);
-        symbolValues.put("🍒_MAGENTA", 0.24);
+        symbolValues.put("🍒_MAGENTA", 2.24);
 
         symbolValues.put("🍋_RED", 0.07);
         symbolValues.put("🍋_GREEN", 0.9);
         symbolValues.put("🍋_BLUE", 0.15);
         symbolValues.put("🍋_YELLOW", 0.24);
         symbolValues.put("🍋_CYAN", 0.45);
-        symbolValues.put("🍋_MAGENTA", 1.01);
+        symbolValues.put("🍋_MAGENTA", 2.01);
 
         symbolValues.put("🍊_RED", 0.05);
         symbolValues.put("🍊_GREEN", 0.14);
         symbolValues.put("🍊_BLUE", 0.25);
         symbolValues.put("🍊_YELLOW", 0.41);
         symbolValues.put("🍊_CYAN", 0.59);
-        symbolValues.put("🍊_MAGENTA", 0.98);
+        symbolValues.put("🍊_MAGENTA", 2.98);
 
         symbolValues.put("🍇_RED", 0.22);
         symbolValues.put("🍇_GREEN", 0.33);
         symbolValues.put("🍇_BLUE", 0.44);
         symbolValues.put("🍇_YELLOW", 0.66);
         symbolValues.put("🍇_CYAN", 0.69);
-        symbolValues.put("🍇_MAGENTA", 0.99);
+        symbolValues.put("🍇_MAGENTA", 2.99);
 
         symbolValues.put("⭐_RED", 0.51);
         symbolValues.put("⭐_GREEN", 0.79);
@@ -560,7 +560,7 @@ public class SlotMachine extends JFrame {
         symbolValues.put("🔔_BLUE", 1.01);
         symbolValues.put("🔔_YELLOW", 1.11);
         symbolValues.put("🔔_CYAN", 1.14);
-        symbolValues.put("🔔_MAGENTA", 1.29);
+        symbolValues.put("🔔_MAGENTA", 2.29);
 
         symbolValues.put("💎_RED", 0.80);
         symbolValues.put("💎_GREEN", 0.90);
