@@ -41,7 +41,7 @@ public class SlotMachine extends JFrame {
     private double totalPayouts = 0;
 
     public SlotMachine() {
-        setTitle("Slot Machine");
+        setTitle("<title>");
         setSize(1400, 900);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -68,9 +68,9 @@ public class SlotMachine extends JFrame {
 
         JPanel titlePanel = new JPanel();
         titlePanel.setBackground(Color.BLACK);
-        JLabel titleLabel = new JLabel("slot_game_simulation", SwingConstants.CENTER);
+        JLabel titleLabel = new JLabel("<title here>", SwingConstants.CENTER);
         titleLabel.setFont(new Font("OCR A Extended", Font.BOLD, 28));
-        titleLabel.setForeground(Color.WHITE);
+        titleLabel.setForeground(Color.GRAY);
         titlePanel.add(titleLabel);
 
         JPanel rightPanel = new JPanel();
