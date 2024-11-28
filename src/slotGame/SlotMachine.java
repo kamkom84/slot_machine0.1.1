@@ -131,7 +131,7 @@ public class SlotMachine extends JFrame {
         autoButton.addActionListener(e -> handleAutoButton());
         buttonPanel.add(autoButton);
 
-        String[] buttons = {"x1.00", "x2.00", "x3.00", "x4.00", "x5.00"};
+        String[] buttons = {"x0.10", "x0.20", "x0.50", "x1.00", "x2.00"};
         betButtons = new JButton[5];
 
         for (int i = 0; i < buttons.length; i++) {
@@ -504,7 +504,6 @@ public class SlotMachine extends JFrame {
             lblCurrentMoney.setForeground(Color.WHITE);
         }
     }
-
 
     private void updateRTPInfo() {
         double rtp = calculateRTP();
