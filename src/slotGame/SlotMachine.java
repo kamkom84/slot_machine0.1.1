@@ -576,12 +576,12 @@ public class SlotMachine extends JFrame {
         symbolValues.put("🍉_CYAN", 2.61);
         symbolValues.put("🍉_MAGENTA", 2.69);
 
-        symbolValues.put("7_RED", 0.02);
-        symbolValues.put("7_GREEN", 0.28);
-        symbolValues.put("7_BLUE", 1.03);
-        symbolValues.put("7_YELLOW", 1.49);
-        symbolValues.put("7_CYAN", 2.00);
-        symbolValues.put("7_MAGENTA", 2.15);
+        symbolValues.put("7_RED", 7.00);
+        symbolValues.put("7_GREEN", 7.00);
+        symbolValues.put("7_BLUE", 7.00);
+        symbolValues.put("7_YELLOW", 7.00);
+        symbolValues.put("7_CYAN", 7.00);
+        symbolValues.put("7_MAGENTA", 7.00);
 
         symbolValues.put("Z_RED", 3.44);
         symbolValues.put("Z_GREEN", 3.59);
