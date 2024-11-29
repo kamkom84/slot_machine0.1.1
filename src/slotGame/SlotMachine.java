@@ -24,6 +24,7 @@ public class SlotMachine extends JFrame {
     private Color[] colors = {Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.CYAN, Color.MAGENTA};
     private boolean isSpinning = false;
     private boolean autoMode = false;
+
     private boolean betSelected = false;
     private boolean autoRunning = false;
     private int selectedBetIndex = -1;
