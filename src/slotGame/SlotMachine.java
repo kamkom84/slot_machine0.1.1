@@ -35,14 +35,14 @@ public class SlotMachine extends JFrame {
     private JPanel infoPanel;
     private JLabel lblInitialMoney, lblCurrentMoney, lblLastWin, lblSessionHigh, lblSessionWin, lblSessionLost, lblGames;
     private Map<String, Double> symbolValues = new HashMap<>();
-    private static final int SPIN_DURATION = 2000;
+    private static final int SPIN_DURATION = 3000;
     private JLabel lblRTP;
     private double totalBets = 0;
     private double totalPayouts = 0;
 
     public SlotMachine() {
-        setTitle("<title>");
-        setSize(1400, 900);
+        setTitle("<title_here>");
+        setSize(1540, 915);  //default screen size: 1400 / 90
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         setResizable(false);
