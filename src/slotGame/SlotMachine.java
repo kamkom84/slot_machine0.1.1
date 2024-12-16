@@ -27,7 +27,7 @@ public class SlotMachine extends JFrame {
     private boolean betSelected = false;
     private boolean autoRunning = false;
     private int selectedBetIndex = -1;
-    private double initialMoney = 100;//////////////////////////////////////////////////////////////////////////////////
+    private double initialMoney = 10;//////////////////////////////////////////////////////////////////////////////////
     private double currentMoney = initialMoney;
     private double sessionHigh = 0;
     private double sessionWin = 0;
@@ -225,7 +225,7 @@ public class SlotMachine extends JFrame {
             }
 
         } else if (autoButton.getText().equals("Start")) {
-            autoButton.setBackground(new Color(255, 182, 193));
+            autoButton.setBackground(new Color(255, 20, 90));
             autoButton.setForeground(Color.BLACK);
             autoButton.setText("Stop auto");
             startAutoSpin();
