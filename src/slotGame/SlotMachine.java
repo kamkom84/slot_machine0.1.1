@@ -35,7 +35,7 @@ public class SlotMachine extends JFrame {
     private JPanel infoPanel;
     private JLabel lblInitialMoney, lblCurrentMoney, lblLastWin, lblSessionHigh, lblSessionWin, lblSessionLost, lblGames;
     private Map<String, Double> symbolValues = new HashMap<>();
-    private static final int SPIN_DURATION = 1000;
+    private static final int SPIN_DURATION = 3000;
     private JLabel lblRTP;
     private double totalBets = 0;
     private double totalPayouts = 0;
