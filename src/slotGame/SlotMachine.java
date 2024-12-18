@@ -5,6 +5,8 @@ import javax.swing.Timer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.*;
 import java.util.List;
 
@@ -37,6 +39,7 @@ public class SlotMachine extends JFrame {
     private Map<String, Double> symbolValues = new HashMap<>();
     private static final int SPIN_DURATION = 3000;//////////////////////////////////////////////////////////////////////
     private JLabel lblRTP;
+    private JLabel lblSessionTime;
     private double totalBets = 0;
     private double totalPayouts = 0;
 
@@ -61,10 +64,11 @@ public class SlotMachine extends JFrame {
         addInfoRow("Current money", lblCurrentMoney = new JLabel(String.format("%.2f", currentMoney)));
         addInfoRow("Session win/lost", lblSessionLost = new JLabel("0.00"));
         addInfoRow("Last win", lblLastWin = new JLabel("0.00"));
-        addInfoRow("Session high", lblSessionHigh = new JLabel("0.00"));
-        addInfoRow("Session win", lblSessionWin = new JLabel("0.00"));
+        addInfoRow("Session highest", lblSessionHigh = new JLabel("0.00"));
+        addInfoRow("Session won", lblSessionWin = new JLabel("0.00"));
         addInfoRow("Games", lblGames = new JLabel("0"));
         addInfoRow("RTP%", lblRTP = new JLabel("0.00"));
+        addInfoRow("Session time", lblSessionTime = new JLabel("00:00:00"));
 
         JPanel titlePanel = new JPanel();
         titlePanel.setBackground(Color.BLACK);
@@ -154,7 +158,58 @@ public class SlotMachine extends JFrame {
 
         createWinDialog();
         initializeSymbolValues();
+
+        startSessionTimer();
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                stopSessionTimer(); // Спиране на таймера при затваряне.
+            }
+        });
     }
+
+    private Timer sessionTimer;
+    private long sessionStartTime;
+
+    private void startSessionTimer() {
+        sessionStartTime = System.currentTimeMillis();
+        sessionTimer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                long elapsedMillis = System.currentTimeMillis() - sessionStartTime;
+                long hours = elapsedMillis / (1000 * 60 * 60);
+                long minutes = (elapsedMillis / (1000 * 60)) % 60;
+                long seconds = (elapsedMillis / 1000) % 60;
+
+                lblSessionTime.setText(String.format("%02d:%02d:%02d", hours, minutes, seconds));
+
+                if (hours >= 2) {
+                    if (lblSessionTime.getForeground() != Color.RED) {
+                        lblSessionTime.setForeground(Color.RED);
+                    }
+                    // Добавяне на премигване
+                    if (elapsedMillis % 1000 < 500) {
+                        lblSessionTime.setForeground(Color.RED);
+                    } else {
+                        lblSessionTime.setForeground(Color.BLACK);
+                    }
+                } else if (hours >= 1) {
+                    lblSessionTime.setForeground(Color.YELLOW);
+                } else {
+                    lblSessionTime.setForeground(Color.WHITE);
+                }
+            }
+        });
+        sessionTimer.start();
+    }
+
+    private void stopSessionTimer() {
+        if (sessionTimer != null) {
+            sessionTimer.stop();
+        }
+    }
+
 
     private void createWinDialog() {
         winDialog = new JDialog(this, "Current Wins", false);
