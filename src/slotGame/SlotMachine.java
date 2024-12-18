@@ -131,7 +131,7 @@ public class SlotMachine extends JFrame {
         autoButton.addActionListener(e -> handleAutoButton());
         buttonPanel.add(autoButton);
 
-        String[] buttons = {"x10.00", "x20.00", "x50.00", "x100.00", "x200.00"};///////////////////////////////////////////////
+        String[] buttons = {"x10.00", "x20.00", "x50.00", "x100.00", "x200.00"};////////////////////////////////////////
         betButtons = new JButton[5];
 
         for (int i = 0; i < buttons.length; i++) {
