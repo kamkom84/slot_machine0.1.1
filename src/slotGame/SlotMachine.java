@@ -35,7 +35,7 @@ public class SlotMachine extends JFrame {
     private JPanel infoPanel;
     private JLabel lblInitialMoney, lblCurrentMoney, lblLastWin, lblSessionHigh, lblSessionWin, lblSessionLost, lblGames;
     private Map<String, Double> symbolValues = new HashMap<>();
-    private static final int SPIN_DURATION = 3000;
+    private static final int SPIN_DURATION = 1000;
     private JLabel lblRTP;
     private double totalBets = 0;
     private double totalPayouts = 0;
@@ -131,7 +131,7 @@ public class SlotMachine extends JFrame {
         autoButton.addActionListener(e -> handleAutoButton());
         buttonPanel.add(autoButton);
 
-        String[] buttons = {"x1.00", "x2.00", "x5.00", "x10.00", "x20.00"};///////////////////////////////////////////////
+        String[] buttons = {"x10.00", "x20.00", "x50.00", "x100.00", "x200.00"};///////////////////////////////////////////////
         betButtons = new JButton[5];
 
         for (int i = 0; i < buttons.length; i++) {
@@ -164,15 +164,6 @@ public class SlotMachine extends JFrame {
         winTable = new JTable(new Object[0][0], tableHeaders);
         JScrollPane scrollPane = new JScrollPane(winTable);
         winDialog.add(scrollPane);
-    }
-
-    private void updateWinTable(List<Object[]> winData) {
-        Object[][] tableData = winData.toArray(new Object[0][]);
-        winTable.setModel(new javax.swing.table.DefaultTableModel(tableData, tableHeaders));
-
-        if (!winDialog.isVisible()) {
-            winDialog.setVisible(true);
-        }
     }
 
     private void processWin(double bet, boolean[][] winningPositions) {
