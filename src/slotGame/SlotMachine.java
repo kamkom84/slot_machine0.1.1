@@ -42,7 +42,7 @@ public class SlotMachine extends JFrame {
     private JLabel lblSessionTime;
     private double totalBets = 0;
     private double totalPayouts = 0;
-    private List<Jackpot> jackpots;
+    private List<JackpotServer> jackpots;
     private JDialog jackpotDialog;
     private JLabel goldJackpotLabel;
     private JLabel silverJackpotLabel;
@@ -209,9 +209,9 @@ public class SlotMachine extends JFrame {
     }
 
     private void updateJackpotDialog() {
-        goldJackpotLabel.setText(String.format("GOLD: %.2f", jackpots.get(2).getCurrentValue()));
-        silverJackpotLabel.setText(String.format("SILVER: %.2f", jackpots.get(1).getCurrentValue()));
-        leadJackpotLabel.setText(String.format("LEAD: %.2f", jackpots.get(0).getCurrentValue()));
+        goldJackpotLabel.setText(String.format("GOLD  %.2f", jackpots.get(2).getCurrentValue()));
+        silverJackpotLabel.setText(String.format("SILVER  %.2f", jackpots.get(1).getCurrentValue()));
+        leadJackpotLabel.setText(String.format("LEAD  %.2f", jackpots.get(0).getCurrentValue()));
     }
 
 
@@ -405,7 +405,7 @@ public class SlotMachine extends JFrame {
             currentMoney -= betAmount;
             gamesPlayed++;
 
-            for (Jackpot jackpot : jackpots) {
+            for (JackpotServer jackpot : jackpots) {
                 double increment = betAmount * jackpot.getIncrementPercentage() / 100;
                 jackpot.increment(increment);
             }
@@ -695,9 +695,9 @@ public class SlotMachine extends JFrame {
 
     private void initializeJackpots() {
         jackpots = new ArrayList<>();
-        jackpots.add(new Jackpot("Minor", 10.00, 0.11, 9.50, 1.00));
-        jackpots.add(new Jackpot("Major", 20.00, 0.09, 19.98, 20.00));
-        jackpots.add(new Jackpot("Mega", 30.00, 0.16, 48.95, 50.00));
+        jackpots.add(new JackpotServer("Minor", 9.14, 0.35, 9.50, 1.00));
+        jackpots.add(new JackpotServer("Major", 17.41, 0.20, 19.98, 20.00));
+        jackpots.add(new JackpotServer("Mega", 24.28, 0.11, 48.95, 50.00));
     }
 
 
