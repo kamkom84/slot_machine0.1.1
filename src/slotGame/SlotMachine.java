@@ -42,6 +42,8 @@ public class SlotMachine extends JFrame {
     private JLabel lblSessionTime;
     private double totalBets = 0;
     private double totalPayouts = 0;
+    private List<Jackpot> jackpots;
+
 
     public SlotMachine() {
         setTitle("<title_here>");
@@ -159,6 +161,9 @@ public class SlotMachine extends JFrame {
         createWinDialog();
         initializeSymbolValues();
 
+        initializeJackpots();
+        startSessionTimer();
+
         startSessionTimer();
 
         addWindowListener(new WindowAdapter() {
@@ -170,6 +175,7 @@ public class SlotMachine extends JFrame {
     }
 
     private Timer sessionTimer;
+
     private long sessionStartTime;
 
     private void startSessionTimer() {
@@ -209,7 +215,6 @@ public class SlotMachine extends JFrame {
             sessionTimer.stop();
         }
     }
-
 
     private void createWinDialog() {
         winDialog = new JDialog(this, "Current Wins", false);
@@ -635,6 +640,14 @@ public class SlotMachine extends JFrame {
         symbolValues.put("Z_CYAN", 5.01);
         symbolValues.put("Z_MAGENTA", 5.22);
     }
+
+    private void initializeJackpots() {
+        jackpots = new ArrayList<>();
+        jackpots.add(new Jackpot("Minor", 100, 1.0, 500, 1000));   // Minor джакпот
+        jackpots.add(new Jackpot("Major", 1000, 0.5, 5000, 10000)); // Major джакпот
+        jackpots.add(new Jackpot("Mega", 5000, 0.1, 20000, 50000)); // Mega джакпот
+    }
+
 
     private String getRandomSymbol() {
         return symbols[random.nextInt(symbols.length)];
