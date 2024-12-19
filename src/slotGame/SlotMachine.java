@@ -29,7 +29,7 @@ public class SlotMachine extends JFrame {
     private boolean betSelected = false;
     private boolean autoRunning = false;
     private int selectedBetIndex = -1;
-    private double initialMoney = 50;/////////////////////////////////////////////////////////////////////////////////
+    private double initialMoney = 5000;/////////////////////////////////////////////////////////////////////////////////
     private double currentMoney = initialMoney;
     private double sessionHigh = 0;
     private double sessionWin = 0;
@@ -47,8 +47,6 @@ public class SlotMachine extends JFrame {
     private JLabel goldJackpotLabel;
     private JLabel silverJackpotLabel;
     private JLabel leadJackpotLabel;
-
-
 
     public SlotMachine() {
         setTitle("<title_here>");
@@ -69,7 +67,7 @@ public class SlotMachine extends JFrame {
 
         addInfoRow("Initial money", lblInitialMoney = new JLabel(String.format("%.2f", initialMoney)));
         addInfoRow("Current money", lblCurrentMoney = new JLabel(String.format("%.2f", currentMoney)));
-        addInfoRow("Session win/lost", lblSessionLost = new JLabel("0.00"));
+        addInfoRow("Session win/loss", lblSessionLost = new JLabel("0.00"));
         addInfoRow("Last win", lblLastWin = new JLabel("0.00"));
         addInfoRow("Session highest", lblSessionHigh = new JLabel("0.00"));
         addInfoRow("Session won", lblSessionWin = new JLabel("0.00"));
@@ -174,18 +172,17 @@ public class SlotMachine extends JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                stopSessionTimer(); // Спиране на таймера при затваряне.
+                stopSessionTimer();
             }
         });
     }
 
     private void initializeJackpotDialog() {
-        jackpotDialog = new JDialog(this, "Jackpot Levels", false);
+        jackpotDialog = new JDialog(this, "Jackpot", false);
         jackpotDialog.setSize(400, 300);
         jackpotDialog.setLayout(new GridLayout(3, 1));
         jackpotDialog.getContentPane().setBackground(Color.BLACK); // Черен цвят за прозореца
 
-        // Създаване на етикети за джакпотите
         goldJackpotLabel = new JLabel();
         goldJackpotLabel.setFont(new Font("OCR A Extended", Font.BOLD, 18));
         goldJackpotLabel.setForeground(Color.YELLOW);
@@ -211,10 +208,8 @@ public class SlotMachine extends JFrame {
     private void updateJackpotDialog() {
         goldJackpotLabel.setText(String.format("GOLD  %.2f", jackpots.get(2).getCurrentValue()));
         silverJackpotLabel.setText(String.format("SILVER  %.2f", jackpots.get(1).getCurrentValue()));
-        leadJackpotLabel.setText(String.format("LEAD  %.2f", jackpots.get(0).getCurrentValue()));
+        leadJackpotLabel.setText(String.format("LEAD   %.2f", jackpots.get(0).getCurrentValue()));
     }
-
-
 
     private Timer sessionTimer;
 
@@ -397,7 +392,6 @@ public class SlotMachine extends JFrame {
         }
     }
 
-
     private void makeBetAndSpin(boolean isAutoPlay) {
         double betAmount = getBetAmount();
         if (currentMoney >= betAmount) {
@@ -416,8 +410,6 @@ public class SlotMachine extends JFrame {
             startSpinning(betAmount, isAutoPlay);
         }
     }
-
-
 
     private double getBetAmount() {
         String betText = betButtons[selectedBetIndex].getText().substring(1);
@@ -695,11 +687,10 @@ public class SlotMachine extends JFrame {
 
     private void initializeJackpots() {
         jackpots = new ArrayList<>();
-        jackpots.add(new JackpotServer("Minor", 9.14, 0.35, 9.50, 1.00));
-        jackpots.add(new JackpotServer("Major", 17.41, 0.20, 19.98, 20.00));
-        jackpots.add(new JackpotServer("Mega", 24.28, 0.11, 48.95, 50.00));
+        jackpots.add(new JackpotServer("Minor", 10.00, 0.35, 19.50, 20.00));
+        jackpots.add(new JackpotServer("Major", 20.00, 0.20, 29.98, 30.00));
+        jackpots.add(new JackpotServer("Mega", 30.00, 0.11, 48.95, 50.00));
     }
-
 
     private String getRandomSymbol() {
         return symbols[random.nextInt(symbols.length)];
@@ -724,8 +715,6 @@ public class SlotMachine extends JFrame {
         SwingUtilities.invokeLater(() -> {
             SlotMachine layout = new SlotMachine();
             layout.setVisible(true);
-
-//            layout.showJackpotDialog();
 
         });
     }
