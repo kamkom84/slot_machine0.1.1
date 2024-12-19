@@ -29,7 +29,7 @@ public class SlotMachine extends JFrame {
     private boolean betSelected = false;
     private boolean autoRunning = false;
     private int selectedBetIndex = -1;
-    private double initialMoney = 5000;/////////////////////////////////////////////////////////////////////////////////
+    private double initialMoney = 50000;/////////////////////////////////////////////////////////////////////////////////
     private double currentMoney = initialMoney;
     private double sessionHigh = 0;
     private double sessionWin = 0;
@@ -687,9 +687,9 @@ public class SlotMachine extends JFrame {
 
     private void initializeJackpots() {
         jackpots = new ArrayList<>();
-        jackpots.add(new JackpotServer("Minor", 10.00, 0.35, 19.50, 20.00));
-        jackpots.add(new JackpotServer("Major", 20.00, 0.20, 29.98, 30.00));
-        jackpots.add(new JackpotServer("Mega", 30.00, 0.11, 48.95, 50.00));
+        jackpots.add(new JackpotServer("Minor", 10.00, 0.35, 190.50, 200.00));
+        jackpots.add(new JackpotServer("Major", 20.00, 0.20, 290.98, 300.00));
+        jackpots.add(new JackpotServer("Mega", 30.00, 0.11, 480.95, 500.00));
     }
 
     private String getRandomSymbol() {
