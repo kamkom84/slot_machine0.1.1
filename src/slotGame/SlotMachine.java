@@ -43,6 +43,11 @@ public class SlotMachine extends JFrame {
     private double totalBets = 0;
     private double totalPayouts = 0;
     private List<Jackpot> jackpots;
+    private JDialog jackpotDialog;
+    private JLabel goldJackpotLabel;
+    private JLabel silverJackpotLabel;
+    private JLabel leadJackpotLabel;
+
 
 
     public SlotMachine() {
@@ -162,7 +167,7 @@ public class SlotMachine extends JFrame {
         initializeSymbolValues();
 
         initializeJackpots();
-        startSessionTimer();
+        initializeJackpotDialog();
 
         startSessionTimer();
 
@@ -173,6 +178,43 @@ public class SlotMachine extends JFrame {
             }
         });
     }
+
+    private void initializeJackpotDialog() {
+        jackpotDialog = new JDialog(this, "Jackpot Levels", false);
+        jackpotDialog.setSize(400, 300);
+        jackpotDialog.setLayout(new GridLayout(3, 1));
+        jackpotDialog.getContentPane().setBackground(Color.BLACK); // Черен цвят за прозореца
+
+        // Създаване на етикети за джакпотите
+        goldJackpotLabel = new JLabel();
+        goldJackpotLabel.setFont(new Font("OCR A Extended", Font.BOLD, 18));
+        goldJackpotLabel.setForeground(Color.YELLOW);
+        goldJackpotLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        jackpotDialog.add(goldJackpotLabel);
+
+        silverJackpotLabel = new JLabel();
+        silverJackpotLabel.setFont(new Font("OCR A Extended", Font.BOLD, 18));
+        silverJackpotLabel.setForeground(Color.LIGHT_GRAY);
+        silverJackpotLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        jackpotDialog.add(silverJackpotLabel);
+
+        leadJackpotLabel = new JLabel();
+        leadJackpotLabel.setFont(new Font("OCR A Extended", Font.BOLD, 18));
+        leadJackpotLabel.setForeground(Color.WHITE);
+        leadJackpotLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        jackpotDialog.add(leadJackpotLabel);
+
+        jackpotDialog.setLocationRelativeTo(this);
+        jackpotDialog.setVisible(true);
+    }
+
+    private void updateJackpotDialog() {
+        goldJackpotLabel.setText(String.format("GOLD: %.2f", jackpots.get(2).getCurrentValue()));
+        silverJackpotLabel.setText(String.format("SILVER: %.2f", jackpots.get(1).getCurrentValue()));
+        leadJackpotLabel.setText(String.format("LEAD: %.2f", jackpots.get(0).getCurrentValue()));
+    }
+
+
 
     private Timer sessionTimer;
 
@@ -355,17 +397,27 @@ public class SlotMachine extends JFrame {
         }
     }
 
+
     private void makeBetAndSpin(boolean isAutoPlay) {
         double betAmount = getBetAmount();
         if (currentMoney >= betAmount) {
             totalBets += betAmount;
             currentMoney -= betAmount;
             gamesPlayed++;
+
+            for (Jackpot jackpot : jackpots) {
+                double increment = betAmount * jackpot.getIncrementPercentage() / 100;
+                jackpot.increment(increment);
+            }
+
+            updateJackpotDialog(); // Обновяване на стойностите в прозореца
             updateInfoPanel();
             stopBlinking();
             startSpinning(betAmount, isAutoPlay);
         }
     }
+
+
 
     private double getBetAmount() {
         String betText = betButtons[selectedBetIndex].getText().substring(1);
@@ -643,9 +695,9 @@ public class SlotMachine extends JFrame {
 
     private void initializeJackpots() {
         jackpots = new ArrayList<>();
-        jackpots.add(new Jackpot("Minor", 100, 1.0, 500, 1000));   // Minor джакпот
-        jackpots.add(new Jackpot("Major", 1000, 0.5, 5000, 10000)); // Major джакпот
-        jackpots.add(new Jackpot("Mega", 5000, 0.1, 20000, 50000)); // Mega джакпот
+        jackpots.add(new Jackpot("Minor", 10.00, 0.11, 9.50, 1.00));
+        jackpots.add(new Jackpot("Major", 20.00, 0.09, 19.98, 20.00));
+        jackpots.add(new Jackpot("Mega", 30.00, 0.16, 48.95, 50.00));
     }
 
 
@@ -672,6 +724,9 @@ public class SlotMachine extends JFrame {
         SwingUtilities.invokeLater(() -> {
             SlotMachine layout = new SlotMachine();
             layout.setVisible(true);
+
+//            layout.showJackpotDialog();
+
         });
     }
 

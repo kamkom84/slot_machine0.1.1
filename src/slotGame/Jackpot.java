@@ -28,9 +28,10 @@ public class Jackpot {
         return currentValue;
     }
 
-    public void increment(double betAmount) {
-        currentValue += betAmount * incrementPercentage / 100;
+    public void increment(double amount) {
+        currentValue += amount; // Увеличаваме текущата стойност на джакпота
     }
+
 
     public boolean shouldPayout() {
         return currentValue >= minPayoutValue && currentValue <= maxPayoutValue;
@@ -100,4 +101,9 @@ public class Jackpot {
         configDialog.setLocationRelativeTo(parent);
         configDialog.setVisible(true);
     }
+
+    public double getIncrementPercentage() {
+        return incrementPercentage;
+    }
+
 }
