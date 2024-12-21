@@ -29,7 +29,7 @@ public class SlotMachine extends JFrame {
     private boolean betSelected = false;
     private boolean autoRunning = false;
     private int selectedBetIndex = -1;
-    private double initialMoney = 5;/////////////////////////////////////////////////////////////////////////////////
+    private double initialMoney = 50;/////////////////////////////////////////////////////////////////////////////////
     private double currentMoney = initialMoney;
     private double sessionHigh = 0;
     private double sessionWin = 0;
