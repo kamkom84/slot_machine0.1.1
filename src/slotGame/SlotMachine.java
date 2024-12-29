@@ -29,7 +29,7 @@ public class SlotMachine extends JFrame {
     private boolean betSelected = false;
     private boolean autoRunning = false;
     private int selectedBetIndex = -1;
-    private double initialMoney = 50;/////////////////////////////////////////////////////////////////////////////////
+    private double initialMoney = 20;/////////////////////////////////////////////////////////////////////////////////
     private double currentMoney = initialMoney;
     private double sessionHigh = 0;
     private double sessionWin = 0;
@@ -140,7 +140,7 @@ public class SlotMachine extends JFrame {
         autoButton.addActionListener(e -> handleAutoButton());
         buttonPanel.add(autoButton);
 
-        String[] buttons = {"x0.10", "x0.20", "x0.50", "x1.00", "x2.00"};////////////////////////////////////////
+        String[] buttons = {"x0.01", "x0.02", "x0.10", "x0.20", "x0.50"};////////////////////////////////////////
         betButtons = new JButton[5];
 
         for (int i = 0; i < buttons.length; i++) {
