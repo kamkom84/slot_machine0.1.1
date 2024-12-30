@@ -29,7 +29,7 @@ public class SlotMachine extends JFrame {
     private boolean betSelected = false;
     private boolean autoRunning = false;
     private int selectedBetIndex = -1;
-    private double initialMoney = 200;/////////////////////////////////////////////////////////////////////////////////
+    private double initialMoney = 200000;/////////////////////////////////////////////////////////////////////////////////
     private double currentMoney = initialMoney;
     private double sessionHigh = 0;
     private double sessionWin = 0;
@@ -166,7 +166,7 @@ public class SlotMachine extends JFrame {
         autoButton.addActionListener(e -> handleAutoButton());
         buttonPanel.add(autoButton);
 
-        String[] buttons = {"x0.01", "x0.02", "x0.10", "x0.20", "x0.50"};////////////////////////////////////////
+        String[] buttons = {"x0.50", "x1.00", "x2.00", "x5.00", "x10.00"};///////////////////////////////////////////////
         betButtons = new JButton[5];
 
         for (int i = 0; i < buttons.length; i++) {
@@ -256,13 +256,13 @@ public class SlotMachine extends JFrame {
         gbc.anchor = GridBagConstraints.WEST;
         JLabel lastJPHitLabel = new JLabel("Jackpot Money");
         lastJPHitLabel.setFont(new Font("OCR A Extended", Font.BOLD, 20));
-        lastJPHitLabel.setForeground(Color.YELLOW);
+        lastJPHitLabel.setForeground(Color.WHITE);
         jackpotDialog.add(lastJPHitLabel, gbc);
 
         // Row 1: Value for "Last JP Hit"
         gbc.gridy = 1;
         gbc.gridwidth = 2;
-        lblLastJPHitValue = new JLabel("0.00");
+        lblLastJPHitValue = new JLabel("       0.00");
         lblLastJPHitValue.setFont(new Font("OCR A Extended", Font.BOLD, 25));
         lblLastJPHitValue.setForeground(Color.GREEN);
         jackpotDialog.add(lblLastJPHitValue, gbc);
@@ -276,7 +276,7 @@ public class SlotMachine extends JFrame {
             btnLoadJP.setFont(new Font("OCR A Extended", Font.BOLD, 20));
             btnLoadJP.setBackground(Color.BLACK);
             btnLoadJP.setForeground(Color.RED);
-            btnLoadJP.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 2));
+            btnLoadJP.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
             btnLoadJP.addActionListener(e -> {
                 double jackpotValue = Double.parseDouble(lblLastJPHitValue.getText());
                 currentMoney += jackpotValue;
@@ -387,13 +387,13 @@ public class SlotMachine extends JFrame {
 
     private void updateJackpotDialog() {
         if (lblGold != null) {
-            lblGold.setText(String.format("GOLD %.2f", goldJackpot.getCurrentValue()));
+            lblGold.setText(String.format("GOLD       %.2f", goldJackpot.getCurrentValue()));
         }
         if (lblSilver != null) {
-            lblSilver.setText(String.format("SILVER %.2f", silverJackpot.getCurrentValue()));
+            lblSilver.setText(String.format("SILVER     %.2f", silverJackpot.getCurrentValue()));
         }
         if (lblLead != null) {
-            lblLead.setText(String.format("LEAD %.2f", leadJackpot.getCurrentValue()));
+            lblLead.setText(String.format("LEAD         %.2f", leadJackpot.getCurrentValue()));
         }
 
         if (goldJackpot.shouldPayout()) {
@@ -924,9 +924,9 @@ public class SlotMachine extends JFrame {
 
     private void initializeJackpots() {
         jackpots = new ArrayList<>();
-        jackpots.add(new JackpotServer("Minor", 10.00, 0.35, 10.05, 10.55));
-        jackpots.add(new JackpotServer("Major", 20.00, 0.20, 20.02, 20.05));
-        jackpots.add(new JackpotServer("Mega", 30.00, 0.11, 30.03, 30.06));
+        jackpots.add(new JackpotServer("Minor", 13.53, 0.25, 29.95, 30.00));
+        jackpots.add(new JackpotServer("Major", 21.30, 0.17, 49.99, 50.05));
+        jackpots.add(new JackpotServer("Mega", 31.13, 0.09, 99.65, 100.00));
 
         leadJackpot = jackpots.get(0);
         silverJackpot = jackpots.get(1);
