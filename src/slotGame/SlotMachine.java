@@ -47,13 +47,33 @@ public class SlotMachine extends JFrame {
     private JLabel goldJackpotLabel;
     private JLabel silverJackpotLabel;
     private JLabel leadJackpotLabel;
+    private JLabel lblLastJPHit;  // За показване на последния спечелен джакпот
+    private JButton btnLoadJP;    // Бутон за добавяне на стойността към Current Money
+    private JLabel lblLastJPValue;
+
+    private JLabel lblLastJPHitValue; // Деклариране на променливата
+    private JLabel goldIndicator, silverIndicator, leadIndicator;
+    private JackpotServer goldJackpot;  // Добавете тази променлива
+    private JackpotServer silverJackpot;  // Добавете тази променлива
+    private JackpotServer leadJackpot;
+    private double lastJackpotHit;
+    private JLabel lblGold;
+    private JLabel lblSilver;
+    private JLabel lblLead;
+
+
+
 
     public SlotMachine() {
+        initializeJackpots();
+        initializeJackpotDialog();
+
         setTitle("<title_here>");
-        setSize(1540, 915);  //default screen size: 1400 / 90
+        setSize(1540, 915);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         setResizable(false);
+
 
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
@@ -70,7 +90,7 @@ public class SlotMachine extends JFrame {
         addInfoRow("Session win/loss", lblSessionLost = new JLabel("0.00"));
         addInfoRow("Last win", lblLastWin = new JLabel("0.00"));
         addInfoRow("Session highest", lblSessionHigh = new JLabel("0.00"));
-        addInfoRow("Session won", lblSessionWin = new JLabel("0.00"));
+        //addInfoRow("Session won", lblSessionWin = new JLabel("0.00"));
         addInfoRow("Games", lblGames = new JLabel("0"));
         addInfoRow("RTP%", lblRTP = new JLabel("0.00"));
         addInfoRow("Session time", lblSessionTime = new JLabel("00:00:00"));
@@ -161,11 +181,37 @@ public class SlotMachine extends JFrame {
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
         add(mainPanel);
 
+///////////////////////////////
+        // Създаване на JLabel за "Last JP Hit"
+        lblLastJPHit = new JLabel("<jp_hit_value_here>", SwingConstants.CENTER);
+        lblLastJPHit.setFont(new Font("OCR A Extended", Font.BOLD, 20));
+        lblLastJPHit.setForeground(Color.YELLOW);
+        lblLastJPHit.setOpaque(false);
+
+        // Създаване на бутон "LOAD"
+        btnLoadJP = new JButton("LOAD");
+        btnLoadJP.setFont(new Font("OCR A Extended", Font.BOLD, 20));
+        btnLoadJP.setBackground(Color.BLACK);
+        btnLoadJP.setForeground(Color.YELLOW);
+        btnLoadJP.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 2));
+
+        // Скриване на елементите по подразбиране
+        lblLastJPHit.setVisible(false);
+        btnLoadJP.setVisible(false);
+
+        // Добавяне на ActionListener към бутона
+        btnLoadJP.addActionListener(e -> loadJackpotToCurrentMoney());
+
+        // Добавяне към джакпот диалога
+        jackpotDialog.add(lblLastJPHit);
+        jackpotDialog.add(btnLoadJP);
+
+//////////////////////////
+
         createWinDialog();
         initializeSymbolValues();
 
-        initializeJackpots();
-        initializeJackpotDialog();
+
 
         startSessionTimer();
 
@@ -177,38 +223,177 @@ public class SlotMachine extends JFrame {
         });
     }
 
+    private void loadJackpotToCurrentMoney() {
+        if (lblLastJPHitValue.isVisible()) {
+            double jackpotValue = Double.parseDouble(lblLastJPHitValue.getText());
+            currentMoney += jackpotValue; // Добавя джакпот стойността към текущите пари
+            lblLastJPHitValue.setText("0.00"); // Нулира стойността след добавяне
+            updateInfoPanel(); // Актуализира интерфейса
+            lblLastJPHitValue.setVisible(false); // Скрива стойността
+            btnLoadJP.setVisible(false); // Скрива бутона
+        }
+    }
+
     private void initializeJackpotDialog() {
         jackpotDialog = new JDialog(this, "Jackpot", false);
-        jackpotDialog.setSize(400, 300);
-        jackpotDialog.setLayout(new GridLayout(3, 1));
-        jackpotDialog.getContentPane().setBackground(Color.BLACK); // Черен цвят за прозореца
+        jackpotDialog.setSize(920, 220);
+        jackpotDialog.setLayout(new GridBagLayout());
+        jackpotDialog.getContentPane().setBackground(Color.BLACK);
 
-        goldJackpotLabel = new JLabel();
-        goldJackpotLabel.setFont(new Font("OCR A Extended", Font.BOLD, 18));
-        goldJackpotLabel.setForeground(Color.YELLOW);
-        goldJackpotLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        jackpotDialog.add(goldJackpotLabel);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);
 
-        silverJackpotLabel = new JLabel();
-        silverJackpotLabel.setFont(new Font("OCR A Extended", Font.BOLD, 18));
-        silverJackpotLabel.setForeground(Color.LIGHT_GRAY);
-        silverJackpotLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        jackpotDialog.add(silverJackpotLabel);
+        // Лявата колона
+        gbc.gridx = 0;
 
-        leadJackpotLabel = new JLabel();
-        leadJackpotLabel.setFont(new Font("OCR A Extended", Font.BOLD, 18));
-        leadJackpotLabel.setForeground(Color.WHITE);
-        leadJackpotLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        jackpotDialog.add(leadJackpotLabel);
+        // Първи ред: Last JP Hit
+        gbc.gridy = 0;
+        JLabel lblLastJPHitTitle = new JLabel("Jackpot Hits");
+        lblLastJPHitTitle.setFont(new Font("OCR A Extended", Font.BOLD, 20));
+        lblLastJPHitTitle.setForeground(Color.YELLOW);
+        jackpotDialog.add(lblLastJPHitTitle, gbc);
 
-        jackpotDialog.setLocationRelativeTo(this);
+        // Втори ред: Стойността на джакпот хита
+        gbc.gridy = 1;
+        lblLastJPHitValue = new JLabel("0.00", SwingConstants.CENTER);
+        lblLastJPHitValue.setFont(new Font("OCR A Extended", Font.BOLD, 20));
+        lblLastJPHitValue.setForeground(Color.YELLOW);
+        lblLastJPHitValue.setVisible(false);
+        jackpotDialog.add(lblLastJPHitValue, gbc);
+
+        // Трети ред: Бутонът "LOAD"
+        gbc.gridy = 2;
+        btnLoadJP = new JButton("LOAD");
+        btnLoadJP.setFont(new Font("OCR A Extended", Font.BOLD, 20));
+        btnLoadJP.setBackground(Color.BLACK);
+        btnLoadJP.setForeground(Color.YELLOW);
+        btnLoadJP.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 2));
+        btnLoadJP.setVisible(false);
+        btnLoadJP.addActionListener(e -> {
+            double jackpotValue = Double.parseDouble(lblLastJPHitValue.getText());
+            currentMoney += jackpotValue;
+            lblCurrentMoney.setText(String.format(Locale.US, "%.2f", currentMoney));
+
+            // Скриване на стойността и бутона след "LOAD"
+            lblLastJPHitValue.setText("0.00");
+            lblLastJPHitValue.setVisible(false);
+            btnLoadJP.setVisible(false);
+        });
+        jackpotDialog.add(btnLoadJP, gbc);
+
+        // Средната колона
+        gbc.gridx = 1;
+
+        gbc.gridy = 0;
+        lblGold = new JLabel("GOLD " + goldJackpot.getCurrentValue());
+        lblGold.setFont(new Font("OCR A Extended", Font.BOLD, 20));
+        lblGold.setForeground(Color.YELLOW);
+        jackpotDialog.add(lblGold, gbc);
+
+        gbc.gridy = 1;
+        lblSilver = new JLabel("SILVER " + silverJackpot.getCurrentValue());
+        lblSilver.setFont(new Font("OCR A Extended", Font.BOLD, 20));
+        lblSilver.setForeground(Color.GRAY);
+        jackpotDialog.add(lblSilver, gbc);
+
+        gbc.gridy = 2;
+        lblLead = new JLabel("LEAD " + leadJackpot.getCurrentValue());
+        lblLead.setFont(new Font("OCR A Extended", Font.BOLD, 20));
+        lblLead.setForeground(Color.DARK_GRAY);
+        jackpotDialog.add(lblLead, gbc);
+
+        // Дясната колона
+        gbc.gridx = 2;
+
+        gbc.gridy = 0;
+        goldIndicator = new JLabel();
+        goldIndicator.setOpaque(true);
+        goldIndicator.setBackground(Color.YELLOW);
+        goldIndicator.setPreferredSize(new Dimension(10, 10));
+        jackpotDialog.add(goldIndicator, gbc);
+
+        gbc.gridy = 1;
+        silverIndicator = new JLabel();
+        silverIndicator.setOpaque(true);
+        silverIndicator.setBackground(Color.GRAY);
+        silverIndicator.setPreferredSize(new Dimension(10, 10));
+        jackpotDialog.add(silverIndicator, gbc);
+
+        gbc.gridy = 2;
+        leadIndicator = new JLabel();
+        leadIndicator.setOpaque(true);
+        leadIndicator.setBackground(Color.DARK_GRAY);
+        leadIndicator.setPreferredSize(new Dimension(10, 10));
+        jackpotDialog.add(leadIndicator, gbc);
+
+        jackpotDialog.setResizable(false);
+        jackpotDialog.setLocation(300, 150);
         jackpotDialog.setVisible(true);
     }
 
+
+
+    private void addDot(JPanel panel, Color color) {
+        JPanel dot = new JPanel();
+        dot.setOpaque(true);
+        dot.setBackground(color);
+        dot.setPreferredSize(new Dimension(10, 10)); // Размер на точката
+        dot.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2)); // Разстояние между точките
+
+        panel.add(dot);
+        panel.revalidate();
+        panel.repaint();
+    }
+
+
+
+
+
+
+
     private void updateJackpotDialog() {
-        goldJackpotLabel.setText(String.format("GOLD  %.2f", jackpots.get(2).getCurrentValue()));
-        silverJackpotLabel.setText(String.format("SILVER  %.2f", jackpots.get(1).getCurrentValue()));
-        leadJackpotLabel.setText(String.format("LEAD   %.2f", jackpots.get(0).getCurrentValue()));
+        lblGold.setText(String.format("GOLD %.2f", goldJackpot.getCurrentValue()));
+        lblSilver.setText(String.format("SILVER %.2f", silverJackpot.getCurrentValue()));
+        lblLead.setText(String.format("LEAD %.2f", leadJackpot.getCurrentValue()));
+
+        if (goldJackpot.shouldPayout()) {
+            showJackpotHit(goldJackpot.getCurrentValue());
+            goldIndicator.setBackground(Color.YELLOW);
+            goldJackpot.reset();
+            addDot((JPanel) goldIndicator.getParent(), Color.YELLOW);
+        }
+
+        if (silverJackpot.shouldPayout()) {
+            showJackpotHit(silverJackpot.getCurrentValue());
+            silverIndicator.setBackground(Color.GRAY);
+            silverJackpot.reset();
+            addDot((JPanel) silverIndicator.getParent(), Color.GRAY);
+        }
+
+        if (leadJackpot.shouldPayout()) {
+            showJackpotHit(leadJackpot.getCurrentValue());
+            leadIndicator.setBackground(Color.DARK_GRAY);
+            leadJackpot.reset();
+            addDot((JPanel) leadIndicator.getParent(), Color.DARK_GRAY);
+        }
+    }
+
+
+
+
+
+
+
+
+
+    private void showJackpotHit(double jackpotValue) {
+        double currentHit = lblLastJPHitValue.isVisible() // Проверява дали има текуща стойност
+                ? Double.parseDouble(lblLastJPHitValue.getText()) // Взима текущата стойност
+                : 0.0; // Ако няма стойност, започва от 0
+
+        double updatedHit = currentHit + jackpotValue; // Добавя новата стойност към текущата
+        lblLastJPHitValue.setText(String.format(Locale.US, "%.2f", updatedHit)); // Обновява текста
+        lblLastJPHitValue.setVisible(true); // Показва стойността
     }
 
     private Timer sessionTimer;
@@ -575,14 +760,19 @@ public class SlotMachine extends JFrame {
     }
 
     private void updateInfoPanel() {
+        // Актуализиране на текущите пари и броя на игрите
         lblCurrentMoney.setText(String.format(Locale.US, "%.2f", currentMoney));
-        lblSessionHigh.setText(String.format(Locale.US, "%.2f", sessionHigh));
-        lblSessionWin.setText(String.format(Locale.US, "%.2f", sessionWin));
         lblGames.setText(String.valueOf(gamesPlayed));
 
+        // Актуализиране на информацията за най-високата печалба в сесията
+        lblSessionHigh.setText(String.format(Locale.US, "%.2f", sessionHigh));
+        // lblSessionWin.setText(String.format(Locale.US, "%.2f", sessionWin)); // Закоментирано, ако не е нужно
+
+        // Изчисление и показване на загубите/печалбите за сесията
         double sessionLost = initialMoney - currentMoney;
         lblSessionLost.setText(String.format(Locale.US, "%.2f", Math.abs(sessionLost))); // Използваме Math.abs()
 
+        // Промяна на цвета в зависимост от загубите/печалбите
         if (sessionLost > 0) {
             lblSessionLost.setForeground(new Color(255, 99, 71)); // Червен цвят за загуба
         } else if (sessionLost < 0) {
@@ -591,6 +781,7 @@ public class SlotMachine extends JFrame {
             lblSessionLost.setForeground(Color.WHITE);
         }
 
+        // Промяна на цвета на текущите пари в зависимост от печалбите/загубите
         if (currentMoney > initialMoney) {
             lblCurrentMoney.setForeground(Color.GREEN);
         } else if (currentMoney < initialMoney) {
@@ -599,6 +790,7 @@ public class SlotMachine extends JFrame {
             lblCurrentMoney.setForeground(Color.WHITE);
         }
     }
+
 
     private void updateRTPInfo() {
         double rtp = calculateRTP();
@@ -685,11 +877,17 @@ public class SlotMachine extends JFrame {
         symbolValues.put("Z_MAGENTA", 5.22);
     }
 
+
+
     private void initializeJackpots() {
         jackpots = new ArrayList<>();
-        jackpots.add(new JackpotServer("Minor", 10.00, 0.35, 190.50, 200.00));
+        jackpots.add(new JackpotServer("Minor", 10.00, 0.35, 10.02, 10.03));
         jackpots.add(new JackpotServer("Major", 20.00, 0.20, 290.98, 300.00));
         jackpots.add(new JackpotServer("Mega", 30.00, 0.11, 480.95, 500.00));
+
+        leadJackpot = jackpots.get(0);
+        silverJackpot = jackpots.get(1);
+        goldJackpot = jackpots.get(2);
     }
 
     private String getRandomSymbol() {
