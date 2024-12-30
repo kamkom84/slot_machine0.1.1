@@ -245,46 +245,43 @@ public class SlotMachine extends JFrame {
 
         // Лявата колона
         gbc.gridx = 0;
-
-        // Първи ред: Last JP Hit
         gbc.gridy = 0;
+
         JLabel lblLastJPHitTitle = new JLabel("Jackpot Hits");
         lblLastJPHitTitle.setFont(new Font("OCR A Extended", Font.BOLD, 20));
         lblLastJPHitTitle.setForeground(Color.YELLOW);
         jackpotDialog.add(lblLastJPHitTitle, gbc);
 
-        // Втори ред: Стойността на джакпот хита
         gbc.gridy = 1;
         lblLastJPHitValue = new JLabel("0.00", SwingConstants.CENTER);
         lblLastJPHitValue.setFont(new Font("OCR A Extended", Font.BOLD, 20));
         lblLastJPHitValue.setForeground(Color.YELLOW);
-        lblLastJPHitValue.setVisible(false);
+        lblLastJPHitValue.setVisible(true); // Винаги видим
         jackpotDialog.add(lblLastJPHitValue, gbc);
 
-        // Трети ред: Бутонът "LOAD"
         gbc.gridy = 2;
         btnLoadJP = new JButton("LOAD");
         btnLoadJP.setFont(new Font("OCR A Extended", Font.BOLD, 20));
         btnLoadJP.setBackground(Color.BLACK);
         btnLoadJP.setForeground(Color.YELLOW);
         btnLoadJP.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 2));
-        btnLoadJP.setVisible(false);
+        btnLoadJP.setVisible(true); // Винаги видим
         btnLoadJP.addActionListener(e -> {
             double jackpotValue = Double.parseDouble(lblLastJPHitValue.getText());
-            currentMoney += jackpotValue;
-            lblCurrentMoney.setText(String.format(Locale.US, "%.2f", currentMoney));
+            if (jackpotValue > 0) {
+                currentMoney += jackpotValue;
+                lblCurrentMoney.setText(String.format(Locale.US, "%.2f", currentMoney));
 
-            // Скриване на стойността и бутона след "LOAD"
-            lblLastJPHitValue.setText("0.00");
-            lblLastJPHitValue.setVisible(false);
-            btnLoadJP.setVisible(false);
+                lblLastJPHitValue.setText("0.00");
+                btnLoadJP.setEnabled(false); // Деактивира бутона, когато няма стойност
+            }
         });
         jackpotDialog.add(btnLoadJP, gbc);
 
         // Средната колона
         gbc.gridx = 1;
-
         gbc.gridy = 0;
+
         lblGold = new JLabel("GOLD " + goldJackpot.getCurrentValue());
         lblGold.setFont(new Font("OCR A Extended", Font.BOLD, 20));
         lblGold.setForeground(Color.YELLOW);
@@ -304,8 +301,8 @@ public class SlotMachine extends JFrame {
 
         // Дясната колона
         gbc.gridx = 2;
-
         gbc.gridy = 0;
+
         goldIndicator = new JLabel();
         goldIndicator.setOpaque(true);
         goldIndicator.setBackground(Color.YELLOW);
@@ -330,6 +327,7 @@ public class SlotMachine extends JFrame {
         jackpotDialog.setLocation(300, 150);
         jackpotDialog.setVisible(true);
     }
+
 
 
 
