@@ -44,15 +44,9 @@ public class SlotMachine extends JFrame {
     private double totalPayouts = 0;
     private List<JackpotServer> jackpots;
     private JDialog jackpotDialog;
-    private JLabel goldJackpotLabel;
-    private JLabel silverJackpotLabel;
-    private JLabel leadJackpotLabel;
     private JLabel lblLastJPHit;  // За показване на последния спечелен джакпот
     private JButton btnLoadJP;    // Бутон за добавяне на стойността към Current Money
-    private JLabel lblLastJPValue;
-
     private JLabel lblLastJPHitValue; // Деклариране на променливата
-    private JLabel goldIndicator, silverIndicator, leadIndicator;
     private JackpotServer goldJackpot;  // Добавете тази променлива
     private JackpotServer silverJackpot;  // Добавете тази променлива
     private JackpotServer leadJackpot;
@@ -66,10 +60,6 @@ public class SlotMachine extends JFrame {
     private JLabel lblLead;
 
 
-
-
-
-
     public SlotMachine() {
         initializeJackpots();
         initializeJackpotDialog();
@@ -79,7 +69,6 @@ public class SlotMachine extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         setResizable(false);
-
 
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
@@ -166,7 +155,7 @@ public class SlotMachine extends JFrame {
         autoButton.addActionListener(e -> handleAutoButton());
         buttonPanel.add(autoButton);
 
-        String[] buttons = {"x0.50", "x1.00", "x2.00", "x5.00", "x10.00"};///////////////////////////////////////////////
+        String[] buttons = {"x0.50", "x1.00", "x2.00", "x5.00", "x20.00"};///////////////////////////////////////////////
         betButtons = new JButton[5];
 
         for (int i = 0; i < buttons.length; i++) {
@@ -187,7 +176,6 @@ public class SlotMachine extends JFrame {
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
         add(mainPanel);
 
-///////////////////////////////
         // Създаване на JLabel за "Last JP Hit"
         lblLastJPHit = new JLabel("<jp_hit_value_here>", SwingConstants.CENTER);
         lblLastJPHit.setFont(new Font("OCR A Extended", Font.BOLD, 20));
@@ -212,12 +200,8 @@ public class SlotMachine extends JFrame {
         jackpotDialog.add(lblLastJPHit);
         jackpotDialog.add(btnLoadJP);
 
-//////////////////////////
-
         createWinDialog();
         initializeSymbolValues();
-
-
 
         startSessionTimer();
 
@@ -346,12 +330,6 @@ public class SlotMachine extends JFrame {
         return panel;
     }
 
-
-
-
-
-
-
     private void addDot(JPanel panel, Color color) {
         JLabel dot = new JLabel();
         dot.setOpaque(true);
@@ -362,9 +340,6 @@ public class SlotMachine extends JFrame {
         panel.revalidate(); // Обновяване на панела
         panel.repaint();
     }
-
-
-
 
     private void initializeJackpotPanels() {
         goldJackpotPanel = new JPanel();
@@ -380,20 +355,15 @@ public class SlotMachine extends JFrame {
         leadJackpotPanel.setBackground(Color.BLACK);
     }
 
-
-
-
-
-
     private void updateJackpotDialog() {
         if (lblGold != null) {
-            lblGold.setText(String.format("GOLD       %.2f", goldJackpot.getCurrentValue()));
+            lblGold.setText(String.format("      GOLD       %.2f", goldJackpot.getCurrentValue()));
         }
         if (lblSilver != null) {
-            lblSilver.setText(String.format("SILVER     %.2f", silverJackpot.getCurrentValue()));
+            lblSilver.setText(String.format("      SILVER     %.2f", silverJackpot.getCurrentValue()));
         }
         if (lblLead != null) {
-            lblLead.setText(String.format("LEAD         %.2f", leadJackpot.getCurrentValue()));
+            lblLead.setText(String.format("      LEAD         %.2f", leadJackpot.getCurrentValue()));
         }
 
         if (goldJackpot.shouldPayout()) {
@@ -412,18 +382,6 @@ public class SlotMachine extends JFrame {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
     private void showJackpotHit(double jackpotValue) {
         if (lblLastJPHitValue != null) { // Уверете се, че не е null
             double currentHit = lblLastJPHitValue.isVisible()
@@ -437,7 +395,6 @@ public class SlotMachine extends JFrame {
             System.err.println("lblLastJPHitValue is not initialized.");
         }
     }
-
 
     private Timer sessionTimer;
 
@@ -834,7 +791,6 @@ public class SlotMachine extends JFrame {
         }
     }
 
-
     private void updateRTPInfo() {
         double rtp = calculateRTP();
         lblRTP.setText(String.format(Locale.US, "%.2f%%", rtp));
@@ -919,8 +875,6 @@ public class SlotMachine extends JFrame {
         symbolValues.put("Z_CYAN", 5.01);
         symbolValues.put("Z_MAGENTA", 5.22);
     }
-
-
 
     private void initializeJackpots() {
         jackpots = new ArrayList<>();
