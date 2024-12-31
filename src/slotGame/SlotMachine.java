@@ -805,14 +805,14 @@ public class SlotMachine extends JFrame {
 
     private void initializeSymbolValues() {
 
-        symbolValues.put("🍒_RED", 0.08);
+        symbolValues.put("🍒_RED", 0.04);
         symbolValues.put("🍒_GREEN", 0.09);
         symbolValues.put("🍒_BLUE", 0.14);
         symbolValues.put("🍒_YELLOW", 0.19);
         symbolValues.put("🍒_CYAN", 0.21);
         symbolValues.put("🍒_MAGENTA", 2.24);
 
-        symbolValues.put("🍋_RED", 0.07);
+        symbolValues.put("🍋_RED", 0.06);
         symbolValues.put("🍋_GREEN", 0.9);
         symbolValues.put("🍋_BLUE", 0.15);
         symbolValues.put("🍋_YELLOW", 0.24);
@@ -826,49 +826,49 @@ public class SlotMachine extends JFrame {
         symbolValues.put("🍊_CYAN", 0.59);
         symbolValues.put("🍊_MAGENTA", 2.98);
 
-        symbolValues.put("🍇_RED", 0.22);
+        symbolValues.put("🍇_RED", 0.15);
         symbolValues.put("🍇_GREEN", 0.33);
         symbolValues.put("🍇_BLUE", 0.44);
         symbolValues.put("🍇_YELLOW", 0.66);
         symbolValues.put("🍇_CYAN", 0.69);
         symbolValues.put("🍇_MAGENTA", 2.99);
 
-        symbolValues.put("⭐_RED", 0.51);
+        symbolValues.put("⭐_RED", 0.45);
         symbolValues.put("⭐_GREEN", 0.79);
         symbolValues.put("⭐_BLUE", 1.01);
         symbolValues.put("⭐_YELLOW", 1.26);
         symbolValues.put("⭐_CYAN", 1.44);
         symbolValues.put("⭐_MAGENTA", 2.68);
 
-        symbolValues.put("🔔_RED", 0.56);
+        symbolValues.put("🔔_RED", 0.50);
         symbolValues.put("🔔_GREEN", 0.98);
         symbolValues.put("🔔_BLUE", 1.01);
         symbolValues.put("🔔_YELLOW", 1.11);
         symbolValues.put("🔔_CYAN", 1.14);
         symbolValues.put("🔔_MAGENTA", 2.29);
 
-        symbolValues.put("💎_RED", 0.80);
+        symbolValues.put("💎_RED", 0.75);
         symbolValues.put("💎_GREEN", 0.90);
         symbolValues.put("💎_BLUE", 1.10);
         symbolValues.put("💎_YELLOW", 1.53);
         symbolValues.put("💎_CYAN", 1.99);
         symbolValues.put("💎_MAGENTA", 2.58);
 
-        symbolValues.put("🍉_RED", 0.11);
+        symbolValues.put("🍉_RED", 0.10);
         symbolValues.put("🍉_GREEN", 1.53);
         symbolValues.put("🍉_BLUE", 2.09);
         symbolValues.put("🍉_YELLOW", 2.59);
         symbolValues.put("🍉_CYAN", 2.61);
         symbolValues.put("🍉_MAGENTA", 2.69);
 
-        symbolValues.put("7_RED", 7.00);
+        symbolValues.put("7_RED", 6.50);
         symbolValues.put("7_GREEN", 7.00);
         symbolValues.put("7_BLUE", 7.00);
         symbolValues.put("7_YELLOW", 7.00);
         symbolValues.put("7_CYAN", 7.00);
         symbolValues.put("7_MAGENTA", 7.00);
 
-        symbolValues.put("Z_RED", 3.44);
+        symbolValues.put("Z_RED", 3.00);
         symbolValues.put("Z_GREEN", 3.59);
         symbolValues.put("Z_BLUE", 4.09);
         symbolValues.put("Z_YELLOW", 4.34);
@@ -879,7 +879,7 @@ public class SlotMachine extends JFrame {
     private void initializeJackpots() {
         jackpots = new ArrayList<>();
         jackpots.add(new JackpotServer("Minor", 13.53, 0.25, 29.95, 30.00));
-        jackpots.add(new JackpotServer("Major", 21.30, 0.17, 49.99, 50.05));
+        jackpots.add(new JackpotServer("Major", 21.30, 0.17, 49.99, 50.00));
         jackpots.add(new JackpotServer("Mega", 31.13, 0.09, 99.65, 100.00));
 
         leadJackpot = jackpots.get(0);
@@ -887,9 +887,25 @@ public class SlotMachine extends JFrame {
         goldJackpot = jackpots.get(2);
     }
 
+//    private String getRandomSymbol() {
+//        return symbols[random.nextInt(symbols.length)];
+//    }
+
     private String getRandomSymbol() {
-        return symbols[random.nextInt(symbols.length)];
+        String[] weightedSymbols = {
+                "🍒", "🍒", "🍒", "🍒", // По-често срещан символ с ниско изплащане
+                "🍋", "🍋", "🍋",
+                "🍊", "🍊",
+                "🍇", "🍇",
+                "⭐", "⭐",
+                "🔔",
+                "💎",
+                "7",  // Рядък символ с високо изплащане
+                "Z"   // Много рядък символ с високо изплащане
+        };
+        return weightedSymbols[random.nextInt(weightedSymbols.length)];
     }
+
 
     private Color getRandomColor() {
         return colors[random.nextInt(colors.length)];
