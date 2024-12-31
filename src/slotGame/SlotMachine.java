@@ -29,7 +29,7 @@ public class SlotMachine extends JFrame {
     private boolean betSelected = false;
     private boolean autoRunning = false;
     private int selectedBetIndex = -1;
-    private double initialMoney = 20000;/////////////////////////////////////////////////////////////////////////////////
+    private double initialMoney = 2000000;/////////////////////////////////////////////////////////////////////////////////
     private double currentMoney = initialMoney;
     private double sessionHigh = 0;
     private double sessionWin = 0;
@@ -805,76 +805,78 @@ public class SlotMachine extends JFrame {
 
     private void initializeSymbolValues() {
 
-        symbolValues.put("🍒_RED", 0.04);
-        symbolValues.put("🍒_GREEN", 0.09);
-        symbolValues.put("🍒_BLUE", 0.14);
-        symbolValues.put("🍒_YELLOW", 0.19);
-        symbolValues.put("🍒_CYAN", 0.21);
-        symbolValues.put("🍒_MAGENTA", 2.24);
+        symbolValues.put("🍒_RED", 0.06);
+        symbolValues.put("🍒_GREEN", 0.10);
+        symbolValues.put("🍒_BLUE", 0.15);
+        symbolValues.put("🍒_YELLOW", 0.22);
+        symbolValues.put("🍒_CYAN", 0.30);
+        symbolValues.put("🍒_MAGENTA", 0.60);
 
-        symbolValues.put("🍋_RED", 0.06);
-        symbolValues.put("🍋_GREEN", 0.9);
-        symbolValues.put("🍋_BLUE", 0.15);
-        symbolValues.put("🍋_YELLOW", 0.24);
-        symbolValues.put("🍋_CYAN", 0.45);
-        symbolValues.put("🍋_MAGENTA", 2.01);
+        symbolValues.put("🍋_RED", 0.07);
+        symbolValues.put("🍋_GREEN", 0.12);
+        symbolValues.put("🍋_BLUE", 0.18);
+        symbolValues.put("🍋_YELLOW", 0.25);
+        symbolValues.put("🍋_CYAN", 0.35);
+        symbolValues.put("🍋_MAGENTA", 0.75);
 
-        symbolValues.put("🍊_RED", 0.05);
-        symbolValues.put("🍊_GREEN", 0.14);
-        symbolValues.put("🍊_BLUE", 0.25);
-        symbolValues.put("🍊_YELLOW", 0.41);
-        symbolValues.put("🍊_CYAN", 0.59);
-        symbolValues.put("🍊_MAGENTA", 2.98);
+        symbolValues.put("🍊_RED", 0.08);
+        symbolValues.put("🍊_GREEN", 0.12);
+        symbolValues.put("🍊_BLUE", 0.18);
+        symbolValues.put("🍊_YELLOW", 0.28);
+        symbolValues.put("🍊_CYAN", 0.45);
+        symbolValues.put("🍊_MAGENTA", 0.80);
 
-        symbolValues.put("🍇_RED", 0.15);
-        symbolValues.put("🍇_GREEN", 0.33);
-        symbolValues.put("🍇_BLUE", 0.44);
-        symbolValues.put("🍇_YELLOW", 0.66);
-        symbolValues.put("🍇_CYAN", 0.69);
-        symbolValues.put("🍇_MAGENTA", 2.99);
+        symbolValues.put("🍇_RED", 0.09);
+        symbolValues.put("🍇_GREEN", 0.15);
+        symbolValues.put("🍇_BLUE", 0.25);
+        symbolValues.put("🍇_YELLOW", 0.35);
+        symbolValues.put("🍇_CYAN", 0.50);
+        symbolValues.put("🍇_MAGENTA", 1.00);
 
-        symbolValues.put("⭐_RED", 0.45);
-        symbolValues.put("⭐_GREEN", 0.79);
-        symbolValues.put("⭐_BLUE", 1.01);
-        symbolValues.put("⭐_YELLOW", 1.26);
-        symbolValues.put("⭐_CYAN", 1.44);
-        symbolValues.put("⭐_MAGENTA", 2.68);
+        symbolValues.put("⭐_RED", 0.50);
+        symbolValues.put("⭐_GREEN", 0.85);
+        symbolValues.put("⭐_BLUE", 1.10);
+        symbolValues.put("⭐_YELLOW", 1.30);
+        symbolValues.put("⭐_CYAN", 1.50);
+        symbolValues.put("⭐_MAGENTA", 2.75);
 
-        symbolValues.put("🔔_RED", 0.50);
-        symbolValues.put("🔔_GREEN", 0.98);
-        symbolValues.put("🔔_BLUE", 1.01);
-        symbolValues.put("🔔_YELLOW", 1.11);
-        symbolValues.put("🔔_CYAN", 1.14);
-        symbolValues.put("🔔_MAGENTA", 2.29);
+        symbolValues.put("🔔_RED", 0.55);
+        symbolValues.put("🔔_GREEN", 0.90);
+        symbolValues.put("🔔_BLUE", 1.10);
+        symbolValues.put("🔔_YELLOW", 1.25);
+        symbolValues.put("🔔_CYAN", 1.35);
+        symbolValues.put("🔔_MAGENTA", 2.25);
 
-        symbolValues.put("💎_RED", 0.75);
+        symbolValues.put("💎_RED", 0.65);
         symbolValues.put("💎_GREEN", 0.90);
-        symbolValues.put("💎_BLUE", 1.10);
-        symbolValues.put("💎_YELLOW", 1.53);
-        symbolValues.put("💎_CYAN", 1.99);
-        symbolValues.put("💎_MAGENTA", 2.58);
+        symbolValues.put("💎_BLUE", 1.20);
+        symbolValues.put("💎_YELLOW", 1.60);
+        symbolValues.put("💎_CYAN", 2.00);
+        symbolValues.put("💎_MAGENTA", 2.60);
 
         symbolValues.put("🍉_RED", 0.10);
-        symbolValues.put("🍉_GREEN", 1.53);
-        symbolValues.put("🍉_BLUE", 2.09);
-        symbolValues.put("🍉_YELLOW", 2.59);
-        symbolValues.put("🍉_CYAN", 2.61);
-        symbolValues.put("🍉_MAGENTA", 2.69);
+        symbolValues.put("🍉_GREEN", 1.30);
+        symbolValues.put("🍉_BLUE", 1.90);
+        symbolValues.put("🍉_YELLOW", 2.40);
+        symbolValues.put("🍉_CYAN", 2.50);
+        symbolValues.put("🍉_MAGENTA", 2.70);
 
-        symbolValues.put("7_RED", 6.50);
-        symbolValues.put("7_GREEN", 7.00);
-        symbolValues.put("7_BLUE", 7.00);
-        symbolValues.put("7_YELLOW", 7.00);
-        symbolValues.put("7_CYAN", 7.00);
-        symbolValues.put("7_MAGENTA", 7.00);
+        symbolValues.put("7_RED", 6.20);
+        symbolValues.put("7_GREEN", 6.70);
+        symbolValues.put("7_BLUE", 6.90);
+        symbolValues.put("7_YELLOW", 7.10);
+        symbolValues.put("7_CYAN", 7.20);
+        symbolValues.put("7_MAGENTA", 7.50);
 
         symbolValues.put("Z_RED", 3.00);
-        symbolValues.put("Z_GREEN", 3.59);
-        symbolValues.put("Z_BLUE", 4.09);
-        symbolValues.put("Z_YELLOW", 4.34);
-        symbolValues.put("Z_CYAN", 5.01);
-        symbolValues.put("Z_MAGENTA", 5.22);
+        symbolValues.put("Z_GREEN", 3.60);
+        symbolValues.put("Z_BLUE", 4.20);
+        symbolValues.put("Z_YELLOW", 4.40);
+        symbolValues.put("Z_CYAN", 5.10);
+        symbolValues.put("Z_MAGENTA", 5.40);
     }
+
+
 
     private void initializeJackpots() {
         jackpots = new ArrayList<>();
@@ -893,8 +895,8 @@ public class SlotMachine extends JFrame {
 
     private String getRandomSymbol() {
         String[] weightedSymbols = {
-                "🍒", "🍒", "🍒", "🍒", // По-често срещан символ с ниско изплащане
-                "🍋", "🍋", "🍋",
+                "🍒", "🍒", "🍒", // По-често срещан символ с ниско изплащане
+                "🍋", "🍋",
                 "🍊", "🍊",
                 "🍇", "🍇",
                 "⭐", "⭐",
