@@ -872,7 +872,7 @@ public class SlotMachine extends JFrame {
 
     private String getRandomSymbol() {
         String[] symbols = {"🍒", "🍋", "🍊", "🍇", "⭐", "🔔", "💎", "7", "Z"};
-        int[] weights =    { 25,   30,    25,   19,    15,    10,    10,    9,   7 }; // Тежестите за всеки символ
+        int[] weights =    { 25,   25,    25,   19,    15,    10,    10,    9,   7 }; // Тежестите за всеки символ
 
         int totalWeight = 0;
         for (int weight : weights) {
