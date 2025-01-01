@@ -59,8 +59,13 @@ public class SlotMachine extends JFrame {
     private JLabel lblSilver;
     private JLabel lblLead;
 
+    private RTPChartWindow rtpChartWindow;
+
 
     public SlotMachine() {
+        rtpChartWindow = new RTPChartWindow();
+        rtpChartWindow.setVisible(true);
+
         initializeJackpots();
         initializeJackpotDialog();
 
@@ -923,6 +928,10 @@ public class SlotMachine extends JFrame {
     private void logRTPToConsole() {
         double rtp = calculateRTP();
         System.out.println(String.format("RTP: %.2f%% | Bets: %.2f | Pays: %.2f", rtp, totalBets, totalPayouts));
+
+        if (rtpChartWindow != null) {
+            rtpChartWindow.updateRTP(rtp);
+        }
     }
 
 
