@@ -784,29 +784,29 @@ public class SlotMachine extends JFrame {
 
     private void initializeSymbolValues() {
 
-        symbolValues.put("🍒_RED", 0.14);
+        symbolValues.put("🍒_RED", 0.15);
         symbolValues.put("🍒_GREEN", 0.20);
         symbolValues.put("🍒_BLUE", 0.25);
         symbolValues.put("🍒_YELLOW", 0.29);
         symbolValues.put("🍒_CYAN", 0.35);
         symbolValues.put("🍒_MAGENTA", 0.50);
 
-        symbolValues.put("🍋_RED", 0.16);
+        symbolValues.put("🍋_RED", 0.18);
         symbolValues.put("🍋_GREEN", 0.20);
         symbolValues.put("🍋_BLUE", 0.22);
         symbolValues.put("🍋_YELLOW", 0.30);
         symbolValues.put("🍋_CYAN", 0.36);
         symbolValues.put("🍋_MAGENTA", 0.51);
 
-        symbolValues.put("🍊_RED", 0.17);
+        symbolValues.put("🍊_RED", 0.19);
         symbolValues.put("🍊_GREEN", 0.25);
         symbolValues.put("🍊_BLUE", 0.27);
         symbolValues.put("🍊_YELLOW", 0.30);
         symbolValues.put("🍊_CYAN", 0.50);
         symbolValues.put("🍊_MAGENTA", 0.55);
 
-        symbolValues.put("🍇_RED", 0.12);
-        symbolValues.put("🍇_GREEN", 0.18);
+        symbolValues.put("🍇_RED", 0.20);
+        symbolValues.put("🍇_GREEN", 0.22);
         symbolValues.put("🍇_BLUE", 0.25);
         symbolValues.put("🍇_YELLOW", 0.35);
         symbolValues.put("🍇_CYAN", 0.45);
@@ -872,7 +872,7 @@ public class SlotMachine extends JFrame {
 
     private String getRandomSymbol() {
         String[] symbols = {"🍒", "🍋", "🍊", "🍇", "⭐", "🔔", "💎", "7", "Z"};
-        int[] weights =    { 25,    25,   25,   19,   15,   10,    12,   10,  7 }; // Тежестите за всеки символ
+        int[] weights =    { 20,    19,   18,   17,   15,   15,    15,   14,  8 }; // Тежестите за всеки символ
 
         int totalWeight = 0;
         for (int weight : weights) {
