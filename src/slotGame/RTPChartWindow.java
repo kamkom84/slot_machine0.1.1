@@ -16,33 +16,42 @@ public class RTPChartWindow extends JFrame {
 
     public RTPChartWindow() {
         setTitle("RTP Chart");
-        setSize(800, 600);
+        setSize(355, 330);////////////////////////////////////////////////////////////////////////////////////
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        // Задаване на черен фон за целия прозорец
+        getContentPane().setBackground(Color.BLACK);
 
         // Създаване на серия за RTP данни
         rtpSeries = new TimeSeries("RTP");
 
         TimeSeriesCollection dataset = new TimeSeriesCollection(rtpSeries);
         JFreeChart chart = ChartFactory.createTimeSeriesChart(
-                "Real-Time RTP", "Time", "RTP (%)", dataset);
+                null, // Няма заглавие на графиката
+                null, // Премахване на надписа "Time"
+                null, // Премахване на надписа "RTP (%)"
+                dataset);
 
-        // Задаване на черен фон
+        // Конфигуриране на черен фон за графиката
         XYPlot plot = (XYPlot) chart.getPlot();
-        plot.setBackgroundPaint(Color.BLACK); // Черен фон на графиката
-        plot.setDomainGridlinePaint(Color.GRAY); // Сиви линии за мрежата
-        plot.setRangeGridlinePaint(Color.GRAY); // Сиви линии за мрежата
+        plot.setBackgroundPaint(Color.BLACK);
+        plot.setDomainGridlinePaint(Color.GRAY);
+        plot.setRangeGridlinePaint(Color.GRAY);
 
-        // Задаване на цвета на текста
-        chart.getTitle().setPaint(Color.WHITE); // Заглавие с бял текст
-        chart.getLegend().setBackgroundPaint(Color.BLACK); // Черен фон за легендата
-        chart.getLegend().setItemPaint(Color.WHITE); // Бял текст в легендата
+        // Премахване на легендата
+        chart.removeLegend();
 
         // Панел за черна графика
         ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setBackground(Color.BLACK); // Черен фон на панела
+        chartPanel.setBackground(Color.BLACK);
         chartPanel.setPreferredSize(new Dimension(800, 600));
 
-        setContentPane(chartPanel);
+        // Задаване на черен фон и за основния панел
+        JPanel contentPane = new JPanel(new BorderLayout());
+        contentPane.setBackground(Color.BLACK);
+        contentPane.add(chartPanel, BorderLayout.CENTER);
+
+        setContentPane(contentPane);
     }
 
     public void updateRTP(double rtp) {

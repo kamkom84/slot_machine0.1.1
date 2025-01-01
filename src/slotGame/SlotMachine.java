@@ -51,10 +51,6 @@ public class SlotMachine extends JFrame {
     private JackpotServer silverJackpot;
     private JackpotServer leadJackpot;
 
-    private JPanel goldJackpotPanel;
-    private JPanel silverJackpotPanel;
-    private JPanel leadJackpotPanel;
-
     private JLabel lblGold;
     private JLabel lblSilver;
     private JLabel lblLead;
@@ -90,7 +86,7 @@ public class SlotMachine extends JFrame {
         addInfoRow("Session win/loss", lblSessionLost = new JLabel("0.00"));
         addInfoRow("Last win", lblLastWin = new JLabel("0.00"));
         addInfoRow("Session highest", lblSessionHigh = new JLabel("0.00"));
-        addInfoRow("Session won", lblSessionWin = new JLabel("0.00"));
+//        addInfoRow("Session won", lblSessionWin = new JLabel("0.00"));
         addInfoRow("Games", lblGames = new JLabel("0"));
         addInfoRow("RTP%", lblRTP = new JLabel("0.00"));
         addInfoRow("Session time", lblSessionTime = new JLabel("00:00:00"));
@@ -788,25 +784,25 @@ public class SlotMachine extends JFrame {
 
     private void initializeSymbolValues() {
 
-        symbolValues.put("🍒_RED", 0.05);
-        symbolValues.put("🍒_GREEN", 0.08);
-        symbolValues.put("🍒_BLUE", 0.12);
-        symbolValues.put("🍒_YELLOW", 0.18);
-        symbolValues.put("🍒_CYAN", 0.25);
-        symbolValues.put("🍒_MAGENTA", 0.40);
+        symbolValues.put("🍒_RED", 0.14);
+        symbolValues.put("🍒_GREEN", 0.20);
+        symbolValues.put("🍒_BLUE", 0.25);
+        symbolValues.put("🍒_YELLOW", 0.29);
+        symbolValues.put("🍒_CYAN", 0.35);
+        symbolValues.put("🍒_MAGENTA", 0.50);
 
-        symbolValues.put("🍋_RED", 0.08);
-        symbolValues.put("🍋_GREEN", 0.12);
-        symbolValues.put("🍋_BLUE", 0.18);
-        symbolValues.put("🍋_YELLOW", 0.25);
-        symbolValues.put("🍋_CYAN", 0.35);
-        symbolValues.put("🍋_MAGENTA", 0.50);
+        symbolValues.put("🍋_RED", 0.16);
+        symbolValues.put("🍋_GREEN", 0.20);
+        symbolValues.put("🍋_BLUE", 0.22);
+        symbolValues.put("🍋_YELLOW", 0.30);
+        symbolValues.put("🍋_CYAN", 0.36);
+        symbolValues.put("🍋_MAGENTA", 0.51);
 
-        symbolValues.put("🍊_RED", 0.10);
-        symbolValues.put("🍊_GREEN", 0.15);
-        symbolValues.put("🍊_BLUE", 0.22);
+        symbolValues.put("🍊_RED", 0.17);
+        symbolValues.put("🍊_GREEN", 0.25);
+        symbolValues.put("🍊_BLUE", 0.27);
         symbolValues.put("🍊_YELLOW", 0.30);
-        symbolValues.put("🍊_CYAN", 0.40);
+        symbolValues.put("🍊_CYAN", 0.50);
         symbolValues.put("🍊_MAGENTA", 0.55);
 
         symbolValues.put("🍇_RED", 0.12);
@@ -873,24 +869,10 @@ public class SlotMachine extends JFrame {
         goldJackpot = jackpots.get(2);
     }
 
-//    private String getRandomSymbol() {
-//        String[] weightedSymbols = {
-//                "🍒", "🍒", "🍒", // По-често срещан символ с ниско изплащане
-//                "🍋", "🍋",
-//                "🍊", "🍊",
-//                "🍇", "🍇",
-//                "⭐", "⭐",
-//                "🔔",
-//                "💎",
-//                "7",  // Рядък символ с високо изплащане
-//                "Z"   // Много рядък символ с високо изплащане
-//        };
-//        return weightedSymbols[random.nextInt(weightedSymbols.length)];
-//    }
 
     private String getRandomSymbol() {
         String[] symbols = {"🍒", "🍋", "🍊", "🍇", "⭐", "🔔", "💎", "7", "Z"};
-        int[] weights =    { 30,   20,    15,   10,    8,    6,    5,    4,   2 }; // Тежестите за всеки символ
+        int[] weights =    { 25,   30,    25,   19,    15,    10,    10,    9,   7 }; // Тежестите за всеки символ
 
         int totalWeight = 0;
         for (int weight : weights) {
