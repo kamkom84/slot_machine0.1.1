@@ -237,7 +237,7 @@ public class SlotMachine extends JFrame {
         gbc.gridy = 0;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.WEST;
-        JLabel lastJPHitLabel = new JLabel("Jackpot Money");
+        JLabel lastJPHitLabel = new JLabel("JACKPOT WINS");
         lastJPHitLabel.setFont(new Font("OCR A Extended", Font.BOLD, 20));
         lastJPHitLabel.setForeground(Color.WHITE);
         jackpotDialog.add(lastJPHitLabel, gbc);
@@ -872,7 +872,7 @@ public class SlotMachine extends JFrame {
 
     private String getRandomSymbol() {
         String[] symbols = {"🍒", "🍋", "🍊", "🍇", "⭐", "🔔", "💎", "7", "Z"};
-        int[] weights =    { 25,   25,    25,   19,    15,    10,    10,    9,   7 }; // Тежестите за всеки символ
+        int[] weights =    { 25,    25,   25,   19,   15,   10,    12,   10,  7 }; // Тежестите за всеки символ
 
         int totalWeight = 0;
         for (int weight : weights) {
