@@ -1,8 +1,5 @@
 package slotGame;
 
-import javax.swing.*;
-import java.awt.*;
-
 public class JackpotServer {
     private String name;
     private double baseValue;
@@ -18,10 +15,6 @@ public class JackpotServer {
         this.minPayoutValue = minPayoutValue;
         this.maxPayoutValue = maxPayoutValue;
         this.currentValue = baseValue;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public double getCurrentValue() {

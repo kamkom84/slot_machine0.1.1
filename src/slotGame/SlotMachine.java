@@ -29,7 +29,7 @@ public class SlotMachine extends JFrame {
     private boolean betSelected = false;
     private boolean autoRunning = false;
     private int selectedBetIndex = -1;
-    private double initialMoney = 2000;/////////////////////////////////////////////////////////////////////////////////
+    private double initialMoney = 3000;/////////////////////////////////////////////////////////////////////////////////
     private double currentMoney = initialMoney;
     private double sessionHigh = 0;
     private double sessionWin = 0;
@@ -50,13 +50,10 @@ public class SlotMachine extends JFrame {
     private JackpotServer goldJackpot;
     private JackpotServer silverJackpot;
     private JackpotServer leadJackpot;
-
     private JLabel lblGold;
     private JLabel lblSilver;
     private JLabel lblLead;
-
     private RTPChartWindow rtpChartWindow;
-
 
     public SlotMachine() {
         rtpChartWindow = new RTPChartWindow();
@@ -86,14 +83,14 @@ public class SlotMachine extends JFrame {
         addInfoRow("Session win/loss", lblSessionLost = new JLabel("0.00"));
         addInfoRow("Last win", lblLastWin = new JLabel("0.00"));
         addInfoRow("Session highest", lblSessionHigh = new JLabel("0.00"));
-//        addInfoRow("Session won", lblSessionWin = new JLabel("0.00"));
+        //addInfoRow("Session won", lblSessionWin = new JLabel("0.00"));
         addInfoRow("Games", lblGames = new JLabel("0"));
         addInfoRow("RTP%", lblRTP = new JLabel("0.00"));
         addInfoRow("Session time", lblSessionTime = new JLabel("00:00:00"));
 
         JPanel titlePanel = new JPanel();
         titlePanel.setBackground(Color.BLACK);
-        JLabel titleLabel = new JLabel("<experimental>", SwingConstants.CENTER);
+        JLabel titleLabel = new JLabel("<experiment>01>", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Consolas", Font.BOLD, 28));
         titleLabel.setForeground(Color.GRAY);
         titlePanel.add(titleLabel);
@@ -156,7 +153,7 @@ public class SlotMachine extends JFrame {
         autoButton.addActionListener(e -> handleAutoButton());
         buttonPanel.add(autoButton);
 
-        String[] buttons = {"x0.50", "x1.00", "x2.00", "x5.00", "x20.00"};///////////////////////////////////////////////
+        String[] buttons = {"x0.50", "x1.00", "x2.00", "x5.00", "x10.00"};///////////////////////////////////////////////
         betButtons = new JButton[5];
 
         for (int i = 0; i < buttons.length; i++) {
@@ -188,14 +185,11 @@ public class SlotMachine extends JFrame {
         btnLoadJP.setForeground(Color.YELLOW);
         btnLoadJP.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 2));
 
-        // Скриване на елементите по подразбиране
         lblLastJPHit.setVisible(false);
         btnLoadJP.setVisible(false);
 
-        // Добавяне на ActionListener към бутона
         btnLoadJP.addActionListener(e -> loadJackpotToCurrentMoney());
 
-        // Добавяне към джакпот диалога
         jackpotDialog.add(lblLastJPHit);
         jackpotDialog.add(btnLoadJP);
 
@@ -215,11 +209,11 @@ public class SlotMachine extends JFrame {
     private void loadJackpotToCurrentMoney() {
         if (lblLastJPHitValue.isVisible()) {
             double jackpotValue = Double.parseDouble(lblLastJPHitValue.getText());
-            currentMoney += jackpotValue; // Добавя джакпот стойността към текущите пари
-            lblLastJPHitValue.setText("0.00"); // Нулира стойността след добавяне
-            updateInfoPanel(); // Актуализира интерфейса
-            lblLastJPHitValue.setVisible(false); // Скрива стойността
-            btnLoadJP.setVisible(false); // Скрива бутона
+            currentMoney += jackpotValue;
+            lblLastJPHitValue.setText("0.00");
+            updateInfoPanel();
+            lblLastJPHitValue.setVisible(false);
+            btnLoadJP.setVisible(false);
         }
     }
 
@@ -252,7 +246,7 @@ public class SlotMachine extends JFrame {
 
         // Row 2: LOAD button
         gbc.gridy = 2;
-        gbc.gridwidth = 2; // Span two columns
+        gbc.gridwidth = 2;//////////////////////////////////////////////////////////////////////////////////////////////
         gbc.fill = GridBagConstraints.HORIZONTAL;
         if (btnLoadJP == null) {
             btnLoadJP = new JButton("LOAD");
@@ -265,7 +259,6 @@ public class SlotMachine extends JFrame {
                 currentMoney += jackpotValue;
                 lblCurrentMoney.setText(String.format(Locale.US, "%.2f", currentMoney));
 
-                // Reset the JP Hit value and hide the button
                 lblLastJPHitValue.setText("0.00");
                 btnLoadJP.setVisible(false);
             });
@@ -296,39 +289,36 @@ public class SlotMachine extends JFrame {
     }
 
     /**
-     * Създава панел за дадено ниво на джакпота (златно, сребърно, оловно).
+     * Създава панел за дадено ниво на джакпота (златно, сребърно, бронзово).
      *
      * @param labelText Текстът на етикета (например "GOLD", "SILVER").
      * @param color Цветът на етикета и точките.
      * @return JPanel, съдържащ етикета и точките.
      */
+
     private JPanel createJackpotPanel(String labelText, Color color) {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panel.setBackground(Color.BLACK);
 
-        // Етикет за нивото
         JLabel label = new JLabel(labelText + " 0.00");
         label.setFont(new Font("OCR A Extended", Font.BOLD, 20));
         label.setForeground(color);
         panel.add(label);
 
-        // Панел за точките
         JPanel dotsPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         dotsPanel.setBackground(Color.BLACK);
         panel.add(dotsPanel);
 
-        // Съхранение на елементи за бъдеща употреба
         if (labelText.equals("GOLD")) {
             lblGold = label;
         } else if (labelText.equals("SILVER")) {
             lblSilver = label;
-        } else if (labelText.equals("LEAD")) {
+        } else if (labelText.equals("BRONZE")) {
             lblLead = label;
         }
 
         return panel;
     }
-
 
     private void updateJackpotDialog() {
         if (lblGold != null) {
@@ -358,7 +348,7 @@ public class SlotMachine extends JFrame {
     }
 
     private void showJackpotHit(double jackpotValue) {
-        if (lblLastJPHitValue != null) { // Уверете се, че не е null
+        if (lblLastJPHitValue != null) {
             double currentHit = lblLastJPHitValue.isVisible()
                     ? Double.parseDouble(lblLastJPHitValue.getText())
                     : 0.0;
@@ -391,7 +381,7 @@ public class SlotMachine extends JFrame {
                     if (lblSessionTime.getForeground() != Color.RED) {
                         lblSessionTime.setForeground(Color.RED);
                     }
-                    // Добавяне на премигване
+
                     if (elapsedMillis % 1000 < 500) {
                         lblSessionTime.setForeground(Color.RED);
                     } else {
@@ -564,7 +554,7 @@ public class SlotMachine extends JFrame {
                 jackpot.increment(increment);
             }
 
-            updateJackpotDialog(); // Обновяване на стойностите в прозореца
+            updateJackpotDialog();
             updateInfoPanel();
             stopBlinking();
             startSpinning(betAmount, isAutoPlay);
@@ -737,28 +727,23 @@ public class SlotMachine extends JFrame {
     }
 
     private void updateInfoPanel() {
-        // Актуализиране на текущите пари и броя на игрите
         lblCurrentMoney.setText(String.format(Locale.US, "%.2f", currentMoney));
         lblGames.setText(String.valueOf(gamesPlayed));
 
-        // Актуализиране на информацията за най-високата печалба в сесията
         lblSessionHigh.setText(String.format(Locale.US, "%.2f", sessionHigh));
-        // lblSessionWin.setText(String.format(Locale.US, "%.2f", sessionWin)); // Закоментирано, ако не е нужно
+        // lblSessionWin.setText(String.format(Locale.US, "%.2f", sessionWin));
 
-        // Изчисление и показване на загубите/печалбите за сесията
         double sessionLost = initialMoney - currentMoney;
-        lblSessionLost.setText(String.format(Locale.US, "%.2f", Math.abs(sessionLost))); // Използваме Math.abs()
+        lblSessionLost.setText(String.format(Locale.US, "%.2f", Math.abs(sessionLost)));
 
-        // Промяна на цвета в зависимост от загубите/печалбите
         if (sessionLost > 0) {
-            lblSessionLost.setForeground(new Color(255, 99, 71)); // Червен цвят за загуба
+            lblSessionLost.setForeground(new Color(255, 99, 71));
         } else if (sessionLost < 0) {
             lblSessionLost.setForeground(Color.GREEN);
         } else {
             lblSessionLost.setForeground(Color.WHITE);
         }
 
-        // Промяна на цвета на текущите пари в зависимост от печалбите/загубите
         if (currentMoney > initialMoney) {
             lblCurrentMoney.setForeground(Color.GREEN);
         } else if (currentMoney < initialMoney) {
@@ -780,58 +765,56 @@ public class SlotMachine extends JFrame {
         return (totalPayouts / totalBets) * 100;
     }
 
-
-
     private void initializeSymbolValues() {
 
-        symbolValues.put("🍒_RED", 0.15);
-        symbolValues.put("🍒_GREEN", 0.20);
-        symbolValues.put("🍒_BLUE", 0.25);
-        symbolValues.put("🍒_YELLOW", 0.29);
-        symbolValues.put("🍒_CYAN", 0.35);
-        symbolValues.put("🍒_MAGENTA", 0.50);
+        symbolValues.put("🍒_RED", 0.25);
+        symbolValues.put("🍒_GREEN", 0.35);
+        symbolValues.put("🍒_BLUE", 0.45);
+        symbolValues.put("🍒_YELLOW", 0.55);
+        symbolValues.put("🍒_CYAN", 0.65);
+        symbolValues.put("🍒_MAGENTA", 0.80);
 
-        symbolValues.put("🍋_RED", 0.18);
-        symbolValues.put("🍋_GREEN", 0.20);
-        symbolValues.put("🍋_BLUE", 0.22);
-        symbolValues.put("🍋_YELLOW", 0.30);
-        symbolValues.put("🍋_CYAN", 0.36);
-        symbolValues.put("🍋_MAGENTA", 0.51);
+        symbolValues.put("🍋_RED", 0.28);
+        symbolValues.put("🍋_GREEN", 0.38);
+        symbolValues.put("🍋_BLUE", 0.48);
+        symbolValues.put("🍋_YELLOW", 0.58);
+        symbolValues.put("🍋_CYAN", 0.68);
+        symbolValues.put("🍋_MAGENTA", 1.00);
 
-        symbolValues.put("🍊_RED", 0.19);
-        symbolValues.put("🍊_GREEN", 0.25);
-        symbolValues.put("🍊_BLUE", 0.27);
-        symbolValues.put("🍊_YELLOW", 0.30);
-        symbolValues.put("🍊_CYAN", 0.50);
-        symbolValues.put("🍊_MAGENTA", 0.55);
+        symbolValues.put("🍊_RED", 0.30);
+        symbolValues.put("🍊_GREEN", 0.40);
+        symbolValues.put("🍊_BLUE", 0.50);
+        symbolValues.put("🍊_YELLOW", 0.60);
+        symbolValues.put("🍊_CYAN", 0.70);
+        symbolValues.put("🍊_MAGENTA", 1.10);
 
-        symbolValues.put("🍇_RED", 0.20);
-        symbolValues.put("🍇_GREEN", 0.22);
-        symbolValues.put("🍇_BLUE", 0.25);
-        symbolValues.put("🍇_YELLOW", 0.35);
-        symbolValues.put("🍇_CYAN", 0.45);
-        symbolValues.put("🍇_MAGENTA", 0.60);
+        symbolValues.put("🍇_RED", 0.40);
+        symbolValues.put("🍇_GREEN", 0.45);
+        symbolValues.put("🍇_BLUE", 0.55);
+        symbolValues.put("🍇_YELLOW", 0.65);
+        symbolValues.put("🍇_CYAN", 0.75);
+        symbolValues.put("🍇_MAGENTA", 1.20);
 
-        symbolValues.put("⭐_RED", 0.40);
+        symbolValues.put("⭐_RED", 0.55);
         symbolValues.put("⭐_GREEN", 0.60);
         symbolValues.put("⭐_BLUE", 0.80);
         symbolValues.put("⭐_YELLOW", 1.00);
         symbolValues.put("⭐_CYAN", 1.20);
         symbolValues.put("⭐_MAGENTA", 1.50);
 
-        symbolValues.put("🔔_RED", 0.50);
+        symbolValues.put("🔔_RED", 0.60);
         symbolValues.put("🔔_GREEN", 0.75);
         symbolValues.put("🔔_BLUE", 1.00);
         symbolValues.put("🔔_YELLOW", 1.20);
         symbolValues.put("🔔_CYAN", 1.40);
-        symbolValues.put("🔔_MAGENTA", 1.80);
+        symbolValues.put("🔔_MAGENTA", 2.10);
 
-        symbolValues.put("💎_RED", 0.70);
+        symbolValues.put("💎_RED", 0.65);
         symbolValues.put("💎_GREEN", 1.00);
-        symbolValues.put("💎_BLUE", 1.30);
+        symbolValues.put("💎_BLUE", 1.20);
         symbolValues.put("💎_YELLOW", 1.70);
         symbolValues.put("💎_CYAN", 2.00);
-        symbolValues.put("💎_MAGENTA", 2.50);
+        symbolValues.put("💎_MAGENTA", 2.40);
 
         symbolValues.put("🍉_RED", 0.80);
         symbolValues.put("🍉_GREEN", 1.20);
@@ -847,21 +830,18 @@ public class SlotMachine extends JFrame {
         symbolValues.put("7_CYAN", 9.00);
         symbolValues.put("7_MAGENTA", 10.00);
 
-        symbolValues.put("Z_RED", 2.50);
-        symbolValues.put("Z_GREEN", 3.00);
-        symbolValues.put("Z_BLUE", 3.50);
-        symbolValues.put("Z_YELLOW", 4.00);
-        symbolValues.put("Z_CYAN", 4.50);
-        symbolValues.put("Z_MAGENTA", 5.00);
+        symbolValues.put("Z_RED", 5.50);
+        symbolValues.put("Z_GREEN", 6.00);
+        symbolValues.put("Z_BLUE", 7.50);
+        symbolValues.put("Z_YELLOW", 8.50);
+        symbolValues.put("Z_CYAN", 10.50);
+        symbolValues.put("Z_MAGENTA", 15.00);
     }
-
-
-
 
     private void initializeJackpots() {
         jackpots = new ArrayList<>();
-        jackpots.add(new JackpotServer("Minor", 13.53, 0.25, 29.95, 30.00));
-        jackpots.add(new JackpotServer("Major", 21.30, 0.17, 49.99, 50.00));
+        jackpots.add(new JackpotServer("Minor", 13.53, 0.18, 29.95, 30.00));
+        jackpots.add(new JackpotServer("Major", 21.30, 0.14, 49.99, 50.00));
         jackpots.add(new JackpotServer("Mega", 31.13, 0.09, 99.65, 100.00));
 
         leadJackpot = jackpots.get(0);
@@ -869,10 +849,9 @@ public class SlotMachine extends JFrame {
         goldJackpot = jackpots.get(2);
     }
 
-
     private String getRandomSymbol() {
         String[] symbols = {"🍒", "🍋", "🍊", "🍇", "⭐", "🔔", "💎", "7", "Z"};
-        int[] weights =    { 20,    19,   18,   17,   15,   15,    15,   14,  8 }; // Тежестите за всеки символ
+        int[] weights =    { 20,    19,   18,   17,   17,   15,    15,   12,  10 }; // Тежестите за всеки символ
 
         int totalWeight = 0;
         for (int weight : weights) {
@@ -890,7 +869,6 @@ public class SlotMachine extends JFrame {
         }
         return symbols[0];
     }
-
 
     private Color getRandomColor() {
         return colors[random.nextInt(colors.length)];
@@ -915,7 +893,6 @@ public class SlotMachine extends JFrame {
             rtpChartWindow.updateRTP(rtp);
         }
     }
-
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
