@@ -55,4 +55,5 @@ public class RTPChartWindow extends JFrame {
     public void updateRTP(double rtp) {
         rtpSeries.addOrUpdate(new Second(), rtp);
     }
+
 }
