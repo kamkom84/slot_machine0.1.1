@@ -86,7 +86,7 @@ public class SlotMachine extends JFrame {
 
         addInfoRow("Initial money", lblInitialMoney = new JLabel(String.format("%.2f", initialMoney)));
         addInfoRow("Current money", lblCurrentMoney = new JLabel(String.format("%.2f", currentMoney)));
-        addInfoRow("Session win/loss", lblSessionLost = new JLabel("0.00"));
+        addInfoRow("Real win/loss", lblSessionLost = new JLabel("0.00"));
         addInfoRow("Last win", lblLastWin = new JLabel("0.00"));
         addInfoRow("Session highest", lblSessionHigh = new JLabel("0.00"));
         addInfoRow("Session won", lblSessionWin = new JLabel("0.00"));
@@ -181,7 +181,7 @@ public class SlotMachine extends JFrame {
         add(mainPanel);
 
         lblLastJPHit = new JLabel("<jp_hit_value_here>", SwingConstants.CENTER);
-        lblLastJPHit.setFont(new Font("OCR A Extended", Font.BOLD, 22));//////////////////////////////////////
+        lblLastJPHit.setFont(new Font("OCR A Extended", Font.BOLD, 20));//////////////////////////////////////
         lblLastJPHit.setForeground(Color.YELLOW);
         lblLastJPHit.setOpaque(false);
 
@@ -255,7 +255,7 @@ public class SlotMachine extends JFrame {
         gbc.gridwidth = 2;//////////////////////////////////////////////////////////////////////////////////////////////
         gbc.fill = GridBagConstraints.HORIZONTAL;
         if (btnLoadJP == null) {
-            btnLoadJP = new JButton("LOAD");
+            btnLoadJP = new JButton("LOAD JP");
             btnLoadJP.setFont(new Font("OCR A Extended", Font.BOLD, 20));
             btnLoadJP.setBackground(Color.BLACK);
             btnLoadJP.setForeground(Color.RED);
@@ -329,13 +329,13 @@ public class SlotMachine extends JFrame {
 
     private void updateJackpotDialog() {
         if (lblGold != null) {
-            lblGold.setText(String.format("      GOLD       %.2f", goldJackpot.getCurrentValue()));
+            lblGold.setText(String.format(Locale.US, "      GOLD       %.2f", goldJackpot.getCurrentValue()));
         }
         if (lblSilver != null) {
-            lblSilver.setText(String.format("      SILVER     %.2f", silverJackpot.getCurrentValue()));
+            lblSilver.setText(String.format(Locale.US, "      SILVER     %.2f", silverJackpot.getCurrentValue()));
         }
         if (lblBronze != null) {
-            lblBronze.setText(String.format("      BRONZE    %.2f", bronzeJackpot.getCurrentValue()));
+            lblBronze.setText(String.format(Locale.US, "      BRONZE    %.2f", bronzeJackpot.getCurrentValue()));
         }
 
         if (goldJackpot.shouldPayout()) {
