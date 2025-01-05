@@ -375,6 +375,7 @@ public class SlotMachine extends JFrame {
     private void startSessionTimer() {
         sessionStartTime = System.currentTimeMillis();
         sessionTimer = new Timer(1000, new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 long elapsedMillis = System.currentTimeMillis() - sessionStartTime;
@@ -384,20 +385,20 @@ public class SlotMachine extends JFrame {
 
                 lblSessionTime.setText(String.format("%02d:%02d:%02d", hours, minutes, seconds));
 
-                if (hours >= 2) {
-                    if (lblSessionTime.getForeground() != Color.RED) {
-                        lblSessionTime.setForeground(Color.RED);
-                    }
-
-                    if (elapsedMillis % 1000 < 500) {
-                        lblSessionTime.setForeground(Color.RED);
-                    } else {
-                        lblSessionTime.setForeground(Color.BLACK);
-                    }
-                } else if (hours >= 1) {
-                    lblSessionTime.setForeground(Color.YELLOW);
-                } else {
+                if (hours < 1) {
                     lblSessionTime.setForeground(Color.WHITE);
+                } else if (hours < 2) {
+                    lblSessionTime.setForeground(Color.YELLOW);
+                } else if (hours < 3) {
+                    lblSessionTime.setForeground(Color.ORANGE);
+                } else if (hours < 4) {
+                    lblSessionTime.setForeground(new Color(255, 140, 0));
+                } else if (hours < 5) {
+                    lblSessionTime.setForeground(Color.RED);
+                } else if (hours < 6) {
+                    lblSessionTime.setForeground(new Color(139, 0, 0));
+                } else {
+                    lblSessionTime.setForeground(new Color(128, 0, 128));
                 }
             }
         });
