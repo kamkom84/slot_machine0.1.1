@@ -54,10 +54,19 @@ public class SlotMachine extends JFrame {
     private JLabel lblSilver;
     private JLabel lblLead;
     private RTPChartWindow rtpChartWindow;
+    private BetWinChartWindow betWinChartWindow;
+    private double cumulativeBet = 0;
+    private double cumulativeWin = 0;
+
+
+
 
     public SlotMachine() {
         rtpChartWindow = new RTPChartWindow();
         rtpChartWindow.setVisible(true);
+
+        betWinChartWindow = new BetWinChartWindow();
+        betWinChartWindow.setVisible(true);
 
         initializeJackpots();
         initializeJackpotDialog();
@@ -434,6 +443,10 @@ public class SlotMachine extends JFrame {
             sessionHigh = winAmount;
         }
 
+        cumulativeWin += winAmount;
+
+        betWinChartWindow.updateWin(cumulativeWin);
+
         lblLastWin.setText(String.format(Locale.US, "%.2f", Math.abs(winAmount)));
 
         updateInfoPanel();
@@ -549,6 +562,12 @@ public class SlotMachine extends JFrame {
             currentMoney -= betAmount;
             gamesPlayed++;
 
+            // Увеличаваме общия залог
+            cumulativeBet += betAmount;
+
+            // Актуализираме графиката за Bet с общия залог
+            betWinChartWindow.updateBet(cumulativeBet);
+
             for (JackpotServer jackpot : jackpots) {
                 double increment = betAmount * jackpot.getIncrementPercentage() / 100;
                 jackpot.increment(increment);
@@ -560,6 +579,7 @@ public class SlotMachine extends JFrame {
             startSpinning(betAmount, isAutoPlay);
         }
     }
+
 
     private double getBetAmount() {
         String betText = betButtons[selectedBetIndex].getText().substring(1);
