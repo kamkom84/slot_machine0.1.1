@@ -49,10 +49,10 @@ public class SlotMachine extends JFrame {
     private JLabel lblLastJPHitValue;
     private JackpotServer goldJackpot;
     private JackpotServer silverJackpot;
-    private JackpotServer leadJackpot;
+    private JackpotServer bronzeJackpot;
     private JLabel lblGold;
     private JLabel lblSilver;
-    private JLabel lblLead;
+    private JLabel lblBronze;
     private RTPChartWindow rtpChartWindow;
     private BetWinChartWindow betWinChartWindow;
     private double cumulativeBet = 0;
@@ -285,10 +285,10 @@ public class SlotMachine extends JFrame {
         JPanel silverJackpotPanel = createJackpotPanel("SILVER", Color.GRAY);
         jackpotDialog.add(silverJackpotPanel, gbc);
 
-        // Row 2: LEAD Panel
+        // Row 2: BRONZE Panel
         gbc.gridy = 2;
-        JPanel leadJackpotPanel = createJackpotPanel("LEAD", Color.DARK_GRAY);
-        jackpotDialog.add(leadJackpotPanel, gbc);
+        JPanel bronzeJackpotPanel = createJackpotPanel("BRONZE", Color.DARK_GRAY);
+        jackpotDialog.add(bronzeJackpotPanel, gbc);
 
         jackpotDialog.setResizable(false);
         jackpotDialog.setLocation(310, 72);///////////////////////////////////////////////////////////////////////
@@ -321,7 +321,7 @@ public class SlotMachine extends JFrame {
         } else if (labelText.equals("SILVER")) {
             lblSilver = label;
         } else if (labelText.equals("BRONZE")) {
-            lblLead = label;
+            lblBronze = label;
         }
 
         return panel;
@@ -334,8 +334,8 @@ public class SlotMachine extends JFrame {
         if (lblSilver != null) {
             lblSilver.setText(String.format("      SILVER     %.2f", silverJackpot.getCurrentValue()));
         }
-        if (lblLead != null) {
-            lblLead.setText(String.format("      LEAD         %.2f", leadJackpot.getCurrentValue()));
+        if (lblBronze != null) {
+            lblBronze.setText(String.format("      BRONZE    %.2f", bronzeJackpot.getCurrentValue()));
         }
 
         if (goldJackpot.shouldPayout()) {
@@ -348,9 +348,9 @@ public class SlotMachine extends JFrame {
             silverJackpot.reset();
         }
 
-        if (leadJackpot.shouldPayout()) {
-            showJackpotHit(leadJackpot.getCurrentValue());
-            leadJackpot.reset();
+        if (bronzeJackpot.shouldPayout()) {
+            showJackpotHit(bronzeJackpot.getCurrentValue());
+            bronzeJackpot.reset();
         }
     }
 
@@ -863,7 +863,7 @@ public class SlotMachine extends JFrame {
         jackpots.add(new JackpotServer("Major", 21.30, 0.14, 49.99, 50.00));
         jackpots.add(new JackpotServer("Mega", 31.13, 0.09, 99.65, 100.00));
 
-        leadJackpot = jackpots.get(0);
+        bronzeJackpot = jackpots.get(0);
         silverJackpot = jackpots.get(1);
         goldJackpot = jackpots.get(2);
     }
