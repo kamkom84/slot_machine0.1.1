@@ -17,7 +17,7 @@ public class BetWinChartWindow extends JFrame {
     private TimeSeries winSeries;
 
     public BetWinChartWindow() {
-        setTitle("Bet & Win Chart");
+        setTitle("Bet/Win Chart");
         setSize(400, 350);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 

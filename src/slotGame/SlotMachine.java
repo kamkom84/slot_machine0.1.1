@@ -68,7 +68,7 @@ public class SlotMachine extends JFrame {
         initializeJackpots();
         initializeJackpotDialog();
 
-        setTitle("");
+        setTitle("v.0.1.0");
         setSize(1540, 915);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -89,14 +89,14 @@ public class SlotMachine extends JFrame {
         addInfoRow("Session win/loss", lblSessionLost = new JLabel("0.00"));
         addInfoRow("Last win", lblLastWin = new JLabel("0.00"));
         addInfoRow("Session highest", lblSessionHigh = new JLabel("0.00"));
-        //addInfoRow("Session won", lblSessionWin = new JLabel("0.00"));
+        addInfoRow("Session won", lblSessionWin = new JLabel("0.00"));
         addInfoRow("Games", lblGames = new JLabel("0"));
         addInfoRow("RTP%", lblRTP = new JLabel("0.00"));
         addInfoRow("Session time", lblSessionTime = new JLabel("00:00:00"));
 
         JPanel titlePanel = new JPanel();
         titlePanel.setBackground(Color.BLACK);
-        JLabel titleLabel = new JLabel("<experiment>01>", SwingConstants.CENTER);
+        JLabel titleLabel = new JLabel("<experiment>zero_one>", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Consolas", Font.BOLD, 28));
         titleLabel.setForeground(Color.GRAY);
         titlePanel.add(titleLabel);
@@ -749,7 +749,7 @@ public class SlotMachine extends JFrame {
         lblGames.setText(String.valueOf(gamesPlayed));
 
         lblSessionHigh.setText(String.format(Locale.US, "%.2f", sessionHigh));
-        //lblSessionWin.setText(String.format(Locale.US, "%.2f", sessionWin));
+        lblSessionWin.setText(String.format(Locale.US, "%.2f", sessionWin));
 
         double sessionLost = initialMoney - currentMoney;
         lblSessionLost.setText(String.format(Locale.US, "%.2f", Math.abs(sessionLost)));
