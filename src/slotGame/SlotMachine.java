@@ -148,7 +148,7 @@ public class SlotMachine extends JFrame {
             }
         }
 
-        JPanel buttonPanel = new JPanel(new GridLayout(1, 6, 5, 5));
+        JPanel buttonPanel = new JPanel(new GridLayout(1, 6, 5, 5));/////////////////////////////////
         buttonPanel.setBackground(Color.DARK_GRAY);
         buttonPanel.setPreferredSize(new Dimension(1200, 100));
 
@@ -181,12 +181,12 @@ public class SlotMachine extends JFrame {
         add(mainPanel);
 
         lblLastJPHit = new JLabel("<jp_hit_value_here>", SwingConstants.CENTER);
-        lblLastJPHit.setFont(new Font("OCR A Extended", Font.BOLD, 20));
+        lblLastJPHit.setFont(new Font("OCR A Extended", Font.BOLD, 22));//////////////////////////////////////
         lblLastJPHit.setForeground(Color.YELLOW);
         lblLastJPHit.setOpaque(false);
 
         btnLoadJP = new JButton("LOAD");
-        btnLoadJP.setFont(new Font("OCR A Extended", Font.BOLD, 20));
+        btnLoadJP.setFont(new Font("OCR A Extended", Font.BOLD, 18));
         btnLoadJP.setBackground(Color.BLACK);
         btnLoadJP.setForeground(Color.YELLOW);
         btnLoadJP.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 2));
