@@ -3,6 +3,7 @@ package slotGame;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.AxisLocation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.time.Second;
 import org.jfree.data.time.TimeSeries;
@@ -45,6 +46,9 @@ public class BetWinChartWindow extends JFrame {
         plot.setDomainGridlinePaint(Color.GRAY);
         plot.setRangeGridlinePaint(Color.GRAY);
 
+        // Промяна на местоположението на оста Y
+        plot.setRangeAxisLocation(AxisLocation.BOTTOM_OR_RIGHT);
+
         // Персонализиране на цветовете на линиите
         plot.getRenderer().setSeriesPaint(0, Color.RED);   // Линията за Bet е червена
         plot.getRenderer().setSeriesPaint(1, Color.GREEN); // Линията за Win е зелена
@@ -76,6 +80,13 @@ public class BetWinChartWindow extends JFrame {
     public void updateWin(double win) {
         winSeries.addOrUpdate(new Second(), win);
     }
+
+    /**
+     * Актуализира линията за Win без промяна в стойността (запазва текущата стойност).
+     */
+    public void updateWinWithoutChange(double currentWin) {
+        winSeries.addOrUpdate(new Second(), currentWin);
+    }
 }
 
 
@@ -101,6 +112,32 @@ public class BetWinChartWindow extends JFrame {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//
 //package slotGame;
 //
 //import org.jfree.chart.ChartFactory;
@@ -110,6 +147,7 @@ public class BetWinChartWindow extends JFrame {
 //import org.jfree.data.time.Second;
 //import org.jfree.data.time.TimeSeries;
 //import org.jfree.data.time.TimeSeriesCollection;
+//
 //import javax.swing.*;
 //import java.awt.*;
 //
@@ -135,9 +173,9 @@ public class BetWinChartWindow extends JFrame {
 //
 //        // Създаване на графиката
 //        JFreeChart chart = ChartFactory.createTimeSeriesChart(
-//                "Bet & Win Tracking",
-//                "Time",
-//                "Value",
+//                null, // Без заглавие
+//                null, // Без надпис на X оста
+//                null, // Без надпис на Y оста
 //                dataset
 //        );
 //
@@ -147,7 +185,11 @@ public class BetWinChartWindow extends JFrame {
 //        plot.setDomainGridlinePaint(Color.GRAY);
 //        plot.setRangeGridlinePaint(Color.GRAY);
 //
-//        chart.removeLegend();
+//        // Персонализиране на цветовете на линиите
+//        plot.getRenderer().setSeriesPaint(0, Color.RED);   // Линията за Bet е червена
+//        plot.getRenderer().setSeriesPaint(1, Color.GREEN); // Линията за Win е зелена
+//
+//        chart.removeLegend(); // Премахваме легендата
 //
 //        // Поставяне на ChartPanel в прозореца
 //        ChartPanel chartPanel = new ChartPanel(chart);
@@ -174,4 +216,16 @@ public class BetWinChartWindow extends JFrame {
 //    public void updateWin(double win) {
 //        winSeries.addOrUpdate(new Second(), win);
 //    }
+//
+//    /**
+//     * Актуализира линията за Win без промяна в стойността (запазва текущата стойност).
+//     */
+//    public void updateWinWithoutChange(double currentWin) {
+//        winSeries.addOrUpdate(new Second(), currentWin);
+//    }
 //}
+
+
+
+
+

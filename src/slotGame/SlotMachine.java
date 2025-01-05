@@ -58,9 +58,6 @@ public class SlotMachine extends JFrame {
     private double cumulativeBet = 0;
     private double cumulativeWin = 0;
 
-
-
-
     public SlotMachine() {
         rtpChartWindow = new RTPChartWindow();
         rtpChartWindow.setVisible(true);
@@ -272,6 +269,7 @@ public class SlotMachine extends JFrame {
                 btnLoadJP.setVisible(false);
             });
         }
+
         jackpotDialog.add(btnLoadJP, gbc);
 
         // Row 0: GOLD Panel
@@ -403,6 +401,7 @@ public class SlotMachine extends JFrame {
                 }
             }
         });
+
         sessionTimer.start();
     }
 
@@ -562,11 +561,11 @@ public class SlotMachine extends JFrame {
             currentMoney -= betAmount;
             gamesPlayed++;
 
-            // Увеличаваме общия залог
             cumulativeBet += betAmount;
 
-            // Актуализираме графиката за Bet с общия залог
             betWinChartWindow.updateBet(cumulativeBet);
+
+            betWinChartWindow.updateWinWithoutChange(cumulativeWin);
 
             for (JackpotServer jackpot : jackpots) {
                 double increment = betAmount * jackpot.getIncrementPercentage() / 100;
@@ -579,7 +578,6 @@ public class SlotMachine extends JFrame {
             startSpinning(betAmount, isAutoPlay);
         }
     }
-
 
     private double getBetAmount() {
         String betText = betButtons[selectedBetIndex].getText().substring(1);
@@ -751,7 +749,7 @@ public class SlotMachine extends JFrame {
         lblGames.setText(String.valueOf(gamesPlayed));
 
         lblSessionHigh.setText(String.format(Locale.US, "%.2f", sessionHigh));
-        // lblSessionWin.setText(String.format(Locale.US, "%.2f", sessionWin));
+        //lblSessionWin.setText(String.format(Locale.US, "%.2f", sessionWin));
 
         double sessionLost = initialMoney - currentMoney;
         lblSessionLost.setText(String.format(Locale.US, "%.2f", Math.abs(sessionLost)));
@@ -782,6 +780,7 @@ public class SlotMachine extends JFrame {
         if (totalBets == 0) {
             return 0.0;
         }
+
         return (totalPayouts / totalBets) * 100;
     }
 
@@ -871,7 +870,7 @@ public class SlotMachine extends JFrame {
 
     private String getRandomSymbol() {
         String[] symbols = {"🍒", "🍋", "🍊", "🍇", "⭐", "🔔", "💎", "7", "Z"};
-        int[] weights =    { 20,    19,   18,   17,   17,   15,    15,   12,  10 }; // Тежестите за всеки символ
+        int[] weights =    { 20,    19,   18,   17,   17,   15,    15,   12,  10 };
 
         int totalWeight = 0;
         for (int weight : weights) {
@@ -887,6 +886,7 @@ public class SlotMachine extends JFrame {
                 return symbols[i];
             }
         }
+
         return symbols[0];
     }
 
