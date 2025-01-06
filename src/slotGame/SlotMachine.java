@@ -96,7 +96,7 @@ public class SlotMachine extends JFrame {
 
         JPanel titlePanel = new JPanel();
         titlePanel.setBackground(Color.BLACK);
-        JLabel titleLabel = new JLabel("<experiment>zero_one>", SwingConstants.CENTER);
+        JLabel titleLabel = new JLabel("<experiment>zer0>", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Consolas", Font.BOLD, 28));
         titleLabel.setForeground(Color.GRAY);
         titlePanel.add(titleLabel);
@@ -398,7 +398,7 @@ public class SlotMachine extends JFrame {
                 } else if (hours < 6) {
                     lblSessionTime.setForeground(new Color(229, 22, 22));
                 } else {
-                    lblSessionTime.setForeground(new Color(182, 12, 182));
+                    lblSessionTime.setForeground(new Color(225, 12, 225));
                 }
             }
         });
