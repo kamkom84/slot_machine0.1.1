@@ -396,7 +396,7 @@ public class SlotMachine extends JFrame {
                 } else if (hours < 5) {
                     lblSessionTime.setForeground(Color.RED);
                 } else if (hours < 6) {
-                    lblSessionTime.setForeground(new Color(139, 0, 0));
+                    lblSessionTime.setForeground(new Color(229, 22, 22));
                 } else {
                     lblSessionTime.setForeground(new Color(182, 12, 182));
                 }
