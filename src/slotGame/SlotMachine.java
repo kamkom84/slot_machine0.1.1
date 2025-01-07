@@ -96,7 +96,7 @@ public class SlotMachine extends JFrame {
 
         JPanel titlePanel = new JPanel();
         titlePanel.setBackground(Color.BLACK);
-        JLabel titleLabel = new JLabel("<experiment>zer0>", SwingConstants.CENTER);
+        JLabel titleLabel = new JLabel("<experiment>>zer0>", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Consolas", Font.BOLD, 28));
         titleLabel.setForeground(Color.GRAY);
         titlePanel.add(titleLabel);
@@ -294,14 +294,6 @@ public class SlotMachine extends JFrame {
         jackpotDialog.setLocation(310, 72);///////////////////////////////////////////////////////////////////////
         jackpotDialog.setVisible(true);
     }
-
-    /**
-     * Създава панел за дадено ниво на джакпота (златно, сребърно, бронзово).
-     *
-     * @param labelText Текстът на етикета (например "GOLD", "SILVER").
-     * @param color Цветът на етикета и точките.
-     * @return JPanel, съдържащ етикета и точките.
-     */
 
     private JPanel createJackpotPanel(String labelText, Color color) {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -860,9 +852,9 @@ public class SlotMachine extends JFrame {
 
     private void initializeJackpots() {
         jackpots = new ArrayList<>();
-        jackpots.add(new JackpotServer("Minor", 13.53, 0.18, 29.95, 30.00));
+        jackpots.add(new JackpotServer("Minor", 13.53, 0.18, 29.99, 30.00));
         jackpots.add(new JackpotServer("Major", 21.30, 0.14, 49.99, 50.00));
-        jackpots.add(new JackpotServer("Mega", 31.13, 0.09, 99.65, 100.00));
+        jackpots.add(new JackpotServer("Mega", 31.13, 0.09, 99.95, 100.00));
 
         bronzeJackpot = jackpots.get(0);
         silverJackpot = jackpots.get(1);
@@ -871,7 +863,7 @@ public class SlotMachine extends JFrame {
 
     private String getRandomSymbol() {
         String[] symbols = {"🍒", "🍋", "🍊", "🍇", "⭐", "🔔", "💎", "7", "Z"};
-        int[] weights =    { 20,    19,   18,   17,   17,   15,    15,   12,  10 };
+        int[] weights =    { 20,    19,   18,    17,   17,   15,    15,  12, 10 };
 
         int totalWeight = 0;
         for (int weight : weights) {
