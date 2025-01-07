@@ -18,7 +18,7 @@ public class BetWinChartWindow extends JFrame {
 
     public BetWinChartWindow() {
         setTitle("Bet/Win Chart");
-        setSize(400, 350);
+        setSize(355, 330);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         getContentPane().setBackground(Color.BLACK);
@@ -60,23 +60,14 @@ public class BetWinChartWindow extends JFrame {
         setContentPane(contentPane);
     }
 
-    /**
-     * Актуализира стойността на линията за Bet.
-     */
     public void updateBet(double bet) {
         betSeries.addOrUpdate(new Second(), bet);
     }
 
-    /**
-     * Актуализира стойността на линията за Win.
-     */
     public void updateWin(double win) {
         winSeries.addOrUpdate(new Second(), win);
     }
 
-    /**
-     * Актуализира линията за Win без промяна в стойността (запазва текущата стойност).
-     */
     public void updateWinWithoutChange(double currentWin) {
         winSeries.addOrUpdate(new Second(), currentWin);
     }
