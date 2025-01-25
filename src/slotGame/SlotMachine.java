@@ -159,7 +159,7 @@ public class SlotMachine extends JFrame {
         autoButton.addActionListener(e -> handleAutoButton());
         buttonPanel.add(autoButton);
 
-        String[] buttons = {"x0.50", "x1.00", "x2.00", "x5.00", "x20.00"};///////////////////////////////////////////////
+        String[] buttons = {"x0.50", "x1.00", "x2.00", "x5.00", "x10.00"};///////////////////////////////////////////////
         betButtons = new JButton[5];
 
         for (int i = 0; i < buttons.length; i++) {
@@ -852,9 +852,9 @@ public class SlotMachine extends JFrame {
 
     private void initializeJackpots() {
         jackpots = new ArrayList<>();
-        jackpots.add(new JackpotServer("Minor", 13.53, 0.18, 34.50, 35.00));
-        jackpots.add(new JackpotServer("Major", 21.30, 0.14, 54.45, 55.68));
-        jackpots.add(new JackpotServer("Mega", 31.13, 0.09, 149.50, 150.00));
+        jackpots.add(new JackpotServer("Minor", 13.53, 0.16, 49.50, 50.00));
+        jackpots.add(new JackpotServer("Major", 21.30, 0.11, 89.50, 90.00));
+        jackpots.add(new JackpotServer("Mega", 31.13, 0.06, 149.50, 150.00));
 
         bronzeJackpot = jackpots.get(0);
         silverJackpot = jackpots.get(1);
