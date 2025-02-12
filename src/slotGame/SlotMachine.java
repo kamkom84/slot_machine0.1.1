@@ -68,7 +68,7 @@ public class SlotMachine extends JFrame {
         initializeJackpots();
         initializeJackpotDialog();
 
-        setTitle("v.0.1.0");
+        setTitle("v1.4_20250118");
         setSize(1540, 915);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -96,7 +96,7 @@ public class SlotMachine extends JFrame {
 
         JPanel titlePanel = new JPanel();
         titlePanel.setBackground(Color.BLACK);
-        JLabel titleLabel = new JLabel("<experiment>>zer0ne>", SwingConstants.CENTER);
+        JLabel titleLabel = new JLabel("<title here>", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Consolas", Font.BOLD, 28));
         titleLabel.setForeground(Color.GRAY);
         titlePanel.add(titleLabel);
@@ -237,7 +237,7 @@ public class SlotMachine extends JFrame {
         gbc.gridy = 0;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.WEST;
-        JLabel lastJPHitLabel = new JLabel("JACKPOT WINS");
+        JLabel lastJPHitLabel = new JLabel("JACKPOT HITS");
         lastJPHitLabel.setFont(new Font("OCR A Extended", Font.BOLD, 20));
         lastJPHitLabel.setForeground(Color.WHITE);
         jackpotDialog.add(lastJPHitLabel, gbc);
