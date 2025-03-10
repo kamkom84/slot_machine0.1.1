@@ -852,9 +852,9 @@ public class SlotMachine extends JFrame {
 
     private void initializeJackpots() {
         jackpots = new ArrayList<>();
-        jackpots.add(new JackpotServer("Minor", 13.53, 0.16, 19.50, 19.97));
-        jackpots.add(new JackpotServer("Major", 21.30, 0.11, 49.50, 49.94));
-        jackpots.add(new JackpotServer("Mega", 31.13, 0.06, 59.50, 59.92));
+        jackpots.add(new JackpotServer("Minor", 13.53, 0.19, 59.50, 59.97));
+        jackpots.add(new JackpotServer("Major", 21.30, 0.13, 89.50, 89.94));
+        jackpots.add(new JackpotServer("Mega", 31.13, 0.07, 119.50, 119.92));
 
         bronzeJackpot = jackpots.get(0);
         silverJackpot = jackpots.get(1);
