@@ -29,7 +29,7 @@ public class SlotMachine extends JFrame {
     private boolean betSelected = false;
     private boolean autoRunning = false;
     private int selectedBetIndex = -1;
-    private double initialMoney = 9990;/////////////////////////////////////////////////////////////////////////////////
+    private double initialMoney = 9999.99;/////////////////////////////////////////////////////////////////////////////////
     private double currentMoney = initialMoney;
     private double sessionHigh = 0;
     private double sessionWin = 0;
@@ -68,7 +68,7 @@ public class SlotMachine extends JFrame {
         initializeJackpots();
         initializeJackpotDialog();
 
-        setTitle("v1.4_20250118");
+        setTitle("v1.4_20250118....");
         setSize(1540, 915);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
