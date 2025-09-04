@@ -68,7 +68,7 @@ public class SlotMachine extends JFrame {
         initializeJackpots();
         initializeJackpotDialog();
 
-        setTitle("v1.4_20250118....");
+        setTitle("v1.4_2025_0118....");
         setSize(1540, 915);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
